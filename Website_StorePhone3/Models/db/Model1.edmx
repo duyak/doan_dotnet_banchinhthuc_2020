@@ -1,0 +1,1855 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dotnetstorephone2Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="auth">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleId" Type="int" Nullable="false" />
+          <Property Name="menuId" Type="int" Nullable="false" />
+          <Property Name="Permission" Type="int" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="brand">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="logo" Type="varchar" MaxLength="255" />
+          <Property Name="code" Type="int" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="text" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="parentId" Type="int" />
+        </EntityType>
+        <EntityType Name="color">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" />
+          <Property Name="productId" Type="int" Nullable="false" />
+          <Property Name="fullname" Type="varchar" MaxLength="255" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="content" Type="text" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="reply" Type="int" />
+          <Property Name="parent" Type="int" />
+        </EntityType>
+        <EntityType Name="discount">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="productId" Type="int" Nullable="false" />
+          <Property Name="startDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="endDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="percentage" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="importproduct">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="supplierId" Type="int" Nullable="false" />
+          <Property Name="productId" Type="int" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="importproductdetail">
+          <Key>
+            <PropertyRef Name="importProductId" />
+            <PropertyRef Name="productDetailId" />
+          </Key>
+          <Property Name="importProductId" Type="int" Nullable="false" />
+          <Property Name="productDetailId" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="parentId" Type="int" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="orderIndex" Type="int" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="address" Type="text" Nullable="false" />
+          <Property Name="payment" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="status" Type="int" />
+          <Property Name="activeFlag" Type="int" />
+          <Property Name="createDate" Type="timestamp" Precision="0" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="orderdetail">
+          <Key>
+            <PropertyRef Name="orderId" />
+            <PropertyRef Name="productDetailId" />
+          </Key>
+          <Property Name="orderId" Type="int" Nullable="false" />
+          <Property Name="productDetailId" Type="int" Nullable="false" />
+          <Property Name="quanlity" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryId" Type="int" Nullable="false" />
+          <Property Name="brandId" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="imgMain" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product_voucher">
+          <Key>
+            <PropertyRef Name="productId" />
+            <PropertyRef Name="voucherId" />
+          </Key>
+          <Property Name="productId" Type="int" Nullable="false" />
+          <Property Name="voucherId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productdetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productId" Type="int" Nullable="false" />
+          <Property Name="specId" Type="int" Nullable="false" />
+          <Property Name="colorId" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="imgUrl" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roleuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="roleId" Type="int" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="spec">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="specdetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="specId" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="value" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="storage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productDetailId" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="voucher">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="startDate" Type="timestamp" Precision="0" />
+          <Property Name="endDate" Type="timestamp" Precision="0" />
+          <Property Name="productId" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="activeFlag" Type="int" Nullable="false" />
+          <Property Name="createDate" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="updateDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <Association Name="authId_MenuId_fk">
+          <End Role="menu" Type="Self.menu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="auth" Type="Self.auth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="auth">
+              <PropertyRef Name="menuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="authId_RoleId_fk">
+          <End Role="role" Type="Self.role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="auth" Type="Self.auth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="auth">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_ibfk_1">
+          <End Role="category" Type="Self.category" Multiplicity="0..1" />
+          <End Role="category1" Type="Self.category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="category1">
+              <PropertyRef Name="parentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="comment_ibfk_1">
+          <End Role="comment" Type="Self.comment" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="comment1" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comment1">
+              <PropertyRef Name="parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="comment_product_fk">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="comment_user_fk">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="discountId_productId_fk">
+          <End Role="product" Type="Self.product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="discount" Type="Self.discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="discount">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="importId_productd_fk">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="importproduct" Type="Self.importproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="importproduct">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="importId_supplierid_fk">
+          <End Role="supplier" Type="Self.supplier" Multiplicity="1" />
+          <End Role="importproduct" Type="Self.importproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="importproduct">
+              <PropertyRef Name="supplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="improDetail_import_fk">
+          <End Role="importproduct" Type="Self.importproduct" Multiplicity="1" />
+          <End Role="importproductdetail" Type="Self.importproductdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="importproduct">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="importproductdetail">
+              <PropertyRef Name="importProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="improDetail_productDetail_fk">
+          <End Role="productdetail" Type="Self.productdetail" Multiplicity="1" />
+          <End Role="importproductdetail" Type="Self.importproductdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productdetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="importproductdetail">
+              <PropertyRef Name="productDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oderId_UsersId_fk">
+          <End Role="users" Type="Self.users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="orderDetail_oderId_fk">
+          <End Role="order" Type="Self.order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="orderdetail" Type="Self.orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orderdetail">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="orderDetail_ProductDetailId_fk">
+          <End Role="productdetail" Type="Self.productdetail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="orderdetail" Type="Self.orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productdetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orderdetail">
+              <PropertyRef Name="productDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="proDetail_spec_fk">
+          <End Role="spec" Type="Self.spec" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="productdetail" Type="Self.productdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="spec">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productdetail">
+              <PropertyRef Name="specId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="product_category_fk">
+          <End Role="category" Type="Self.category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="product_productVoucher">
+          <End Role="product" Type="Self.product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="product_voucher" Type="Self.product_voucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product_voucher">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productDetail_storage_fk">
+          <End Role="productdetail" Type="Self.productdetail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="storage" Type="Self.storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productdetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="storage">
+              <PropertyRef Name="productDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productDetailId_colorId_fk">
+          <End Role="color" Type="Self.color" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="productdetail" Type="Self.productdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="color">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productdetail">
+              <PropertyRef Name="colorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productDetailId_productId_fk">
+          <End Role="product" Type="Self.product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="productdetail" Type="Self.productdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productdetail">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productId_BrandId_fk">
+          <End Role="brand" Type="Self.brand" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="brand">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="brandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="roleUserId_RoleId_fk">
+          <End Role="role" Type="Self.role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="roleuser" Type="Self.roleuser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="roleuser">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="roleUserId_UserId_fk">
+          <End Role="users" Type="Self.users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="roleuser" Type="Self.roleuser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="roleuser">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="specId_specDetailId_fk">
+          <End Role="spec" Type="Self.spec" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="specdetail" Type="Self.specdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="spec">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="specdetail">
+              <PropertyRef Name="specId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="voucher_productVoucher">
+          <End Role="voucher" Type="Self.voucher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="product_voucher" Type="Self.product_voucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="voucher">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product_voucher">
+              <PropertyRef Name="voucherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="voucherId_ProductId_fk">
+          <End Role="product" Type="Self.product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="voucher" Type="Self.voucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="voucher">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dotnetstorephone2ModelStoreContainer">
+          <EntitySet Name="auth" EntityType="Self.auth" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="brand" EntityType="Self.brand" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="category" EntityType="Self.category" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="color" EntityType="Self.color" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="comment" EntityType="Self.comment" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="discount" EntityType="Self.discount" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="importproduct" EntityType="Self.importproduct" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="importproductdetail" EntityType="Self.importproductdetail" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="menu" EntityType="Self.menu" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="order" EntityType="Self.order" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="orderdetail" EntityType="Self.orderdetail" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="product_voucher" EntityType="Self.product_voucher" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="productdetail" EntityType="Self.productdetail" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="roleuser" EntityType="Self.roleuser" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="spec" EntityType="Self.spec" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="specdetail" EntityType="Self.specdetail" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="storage" EntityType="Self.storage" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="supplier" EntityType="Self.supplier" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dotnetstorephone2" store:Type="Tables" />
+          <EntitySet Name="voucher" EntityType="Self.voucher" Schema="dotnetstorephone2" store:Type="Tables" />
+          <AssociationSet Name="authId_MenuId_fk" Association="Self.authId_MenuId_fk">
+            <End Role="menu" EntitySet="menu" />
+            <End Role="auth" EntitySet="auth" />
+          </AssociationSet>
+          <AssociationSet Name="authId_RoleId_fk" Association="Self.authId_RoleId_fk">
+            <End Role="role" EntitySet="role" />
+            <End Role="auth" EntitySet="auth" />
+          </AssociationSet>
+          <AssociationSet Name="category_ibfk_1" Association="Self.category_ibfk_1">
+            <End Role="category" EntitySet="category" />
+            <End Role="category1" EntitySet="category" />
+          </AssociationSet>
+          <AssociationSet Name="comment_ibfk_1" Association="Self.comment_ibfk_1">
+            <End Role="comment" EntitySet="comment" />
+            <End Role="comment1" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="comment_product_fk" Association="Self.comment_product_fk">
+            <End Role="product" EntitySet="product" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="comment_user_fk" Association="Self.comment_user_fk">
+            <End Role="users" EntitySet="users" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="discountId_productId_fk" Association="Self.discountId_productId_fk">
+            <End Role="product" EntitySet="product" />
+            <End Role="discount" EntitySet="discount" />
+          </AssociationSet>
+          <AssociationSet Name="importId_productd_fk" Association="Self.importId_productd_fk">
+            <End Role="product" EntitySet="product" />
+            <End Role="importproduct" EntitySet="importproduct" />
+          </AssociationSet>
+          <AssociationSet Name="importId_supplierid_fk" Association="Self.importId_supplierid_fk">
+            <End Role="supplier" EntitySet="supplier" />
+            <End Role="importproduct" EntitySet="importproduct" />
+          </AssociationSet>
+          <AssociationSet Name="improDetail_import_fk" Association="Self.improDetail_import_fk">
+            <End Role="importproduct" EntitySet="importproduct" />
+            <End Role="importproductdetail" EntitySet="importproductdetail" />
+          </AssociationSet>
+          <AssociationSet Name="improDetail_productDetail_fk" Association="Self.improDetail_productDetail_fk">
+            <End Role="productdetail" EntitySet="productdetail" />
+            <End Role="importproductdetail" EntitySet="importproductdetail" />
+          </AssociationSet>
+          <AssociationSet Name="oderId_UsersId_fk" Association="Self.oderId_UsersId_fk">
+            <End Role="users" EntitySet="users" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="orderDetail_oderId_fk" Association="Self.orderDetail_oderId_fk">
+            <End Role="order" EntitySet="order" />
+            <End Role="orderdetail" EntitySet="orderdetail" />
+          </AssociationSet>
+          <AssociationSet Name="orderDetail_ProductDetailId_fk" Association="Self.orderDetail_ProductDetailId_fk">
+            <End Role="productdetail" EntitySet="productdetail" />
+            <End Role="orderdetail" EntitySet="orderdetail" />
+          </AssociationSet>
+          <AssociationSet Name="proDetail_spec_fk" Association="Self.proDetail_spec_fk">
+            <End Role="spec" EntitySet="spec" />
+            <End Role="productdetail" EntitySet="productdetail" />
+          </AssociationSet>
+          <AssociationSet Name="product_category_fk" Association="Self.product_category_fk">
+            <End Role="category" EntitySet="category" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="product_productVoucher" Association="Self.product_productVoucher">
+            <End Role="product" EntitySet="product" />
+            <End Role="product_voucher" EntitySet="product_voucher" />
+          </AssociationSet>
+          <AssociationSet Name="productDetail_storage_fk" Association="Self.productDetail_storage_fk">
+            <End Role="productdetail" EntitySet="productdetail" />
+            <End Role="storage" EntitySet="storage" />
+          </AssociationSet>
+          <AssociationSet Name="productDetailId_colorId_fk" Association="Self.productDetailId_colorId_fk">
+            <End Role="color" EntitySet="color" />
+            <End Role="productdetail" EntitySet="productdetail" />
+          </AssociationSet>
+          <AssociationSet Name="productDetailId_productId_fk" Association="Self.productDetailId_productId_fk">
+            <End Role="product" EntitySet="product" />
+            <End Role="productdetail" EntitySet="productdetail" />
+          </AssociationSet>
+          <AssociationSet Name="productId_BrandId_fk" Association="Self.productId_BrandId_fk">
+            <End Role="brand" EntitySet="brand" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="roleUserId_RoleId_fk" Association="Self.roleUserId_RoleId_fk">
+            <End Role="role" EntitySet="role" />
+            <End Role="roleuser" EntitySet="roleuser" />
+          </AssociationSet>
+          <AssociationSet Name="roleUserId_UserId_fk" Association="Self.roleUserId_UserId_fk">
+            <End Role="users" EntitySet="users" />
+            <End Role="roleuser" EntitySet="roleuser" />
+          </AssociationSet>
+          <AssociationSet Name="specId_specDetailId_fk" Association="Self.specId_specDetailId_fk">
+            <End Role="spec" EntitySet="spec" />
+            <End Role="specdetail" EntitySet="specdetail" />
+          </AssociationSet>
+          <AssociationSet Name="voucher_productVoucher" Association="Self.voucher_productVoucher">
+            <End Role="voucher" EntitySet="voucher" />
+            <End Role="product_voucher" EntitySet="product_voucher" />
+          </AssociationSet>
+          <AssociationSet Name="voucherId_ProductId_fk" Association="Self.voucherId_ProductId_fk">
+            <End Role="product" EntitySet="product" />
+            <End Role="voucher" EntitySet="voucher" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dotnetstorephone2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="auth">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleId" Type="Int32" Nullable="false" />
+          <Property Name="menuId" Type="Int32" Nullable="false" />
+          <Property Name="Permission" Type="Int32" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="menu" Relationship="Self.authId_MenuId_fk" FromRole="auth" ToRole="menu" />
+          <NavigationProperty Name="role" Relationship="Self.authId_RoleId_fk" FromRole="auth" ToRole="role" />
+        </EntityType>
+        <EntityType Name="brand">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="logo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="Int32" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="products" Relationship="Self.productId_BrandId_fk" FromRole="brand" ToRole="product" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <Property Name="parentId" Type="Int32" />
+          <NavigationProperty Name="category1" Relationship="Self.category_ibfk_1" FromRole="category" ToRole="category1" />
+          <NavigationProperty Name="category2" Relationship="Self.category_ibfk_1" FromRole="category1" ToRole="category" />
+          <NavigationProperty Name="products" Relationship="Self.product_category_fk" FromRole="category" ToRole="product" />
+        </EntityType>
+        <EntityType Name="color">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="productdetails" Relationship="Self.productDetailId_colorId_fk" FromRole="color" ToRole="productdetail" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <Property Name="fullname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="content" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <Property Name="reply" Type="Int32" />
+          <Property Name="parent" Type="Int32" />
+          <NavigationProperty Name="comment1" Relationship="Self.comment_ibfk_1" FromRole="comment" ToRole="comment1" />
+          <NavigationProperty Name="comment2" Relationship="Self.comment_ibfk_1" FromRole="comment1" ToRole="comment" />
+          <NavigationProperty Name="product" Relationship="Self.comment_product_fk" FromRole="comment" ToRole="product" />
+          <NavigationProperty Name="user" Relationship="Self.comment_user_fk" FromRole="comment" ToRole="users" />
+        </EntityType>
+        <EntityType Name="discount">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" />
+          <Property Name="endDate" Type="DateTime" Nullable="false" />
+          <Property Name="percentage" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="product" Relationship="Self.discountId_productId_fk" FromRole="discount" ToRole="product" />
+        </EntityType>
+        <EntityType Name="importproduct">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="supplierId" Type="Int32" Nullable="false" />
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="product" Relationship="Self.importId_productd_fk" FromRole="importproduct" ToRole="product" />
+          <NavigationProperty Name="supplier" Relationship="Self.importId_supplierid_fk" FromRole="importproduct" ToRole="supplier" />
+          <NavigationProperty Name="importproductdetails" Relationship="Self.improDetail_import_fk" FromRole="importproduct" ToRole="importproductdetail" />
+        </EntityType>
+        <EntityType Name="importproductdetail">
+          <Key>
+            <PropertyRef Name="importProductId" />
+            <PropertyRef Name="productDetailId" />
+          </Key>
+          <Property Name="importProductId" Type="Int32" Nullable="false" />
+          <Property Name="productDetailId" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="importproduct" Relationship="Self.improDetail_import_fk" FromRole="importproductdetail" ToRole="importproduct" />
+          <NavigationProperty Name="productdetail" Relationship="Self.improDetail_productDetail_fk" FromRole="importproductdetail" ToRole="productdetail" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parentId" Type="Int32" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="orderIndex" Type="Int32" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="auths" Relationship="Self.authId_MenuId_fk" FromRole="menu" ToRole="auth" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="payment" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Decimal" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="activeFlag" Type="Int32" />
+          <Property Name="createDate" Type="DateTime" />
+          <Property Name="updateDate" Type="DateTime" />
+          <NavigationProperty Name="user" Relationship="Self.oderId_UsersId_fk" FromRole="order" ToRole="users" />
+          <NavigationProperty Name="orderdetails" Relationship="Self.orderDetail_oderId_fk" FromRole="order" ToRole="orderdetail" />
+        </EntityType>
+        <EntityType Name="orderdetail">
+          <Key>
+            <PropertyRef Name="orderId" />
+            <PropertyRef Name="productDetailId" />
+          </Key>
+          <Property Name="orderId" Type="Int32" Nullable="false" />
+          <Property Name="productDetailId" Type="Int32" Nullable="false" />
+          <Property Name="quanlity" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="order" Relationship="Self.orderDetail_oderId_fk" FromRole="orderdetail" ToRole="order" />
+          <NavigationProperty Name="productdetail" Relationship="Self.orderDetail_ProductDetailId_fk" FromRole="orderdetail" ToRole="productdetail" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryId" Type="Int32" Nullable="false" />
+          <Property Name="brandId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="imgMain" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="brand" Relationship="Self.productId_BrandId_fk" FromRole="product" ToRole="brand" />
+          <NavigationProperty Name="category" Relationship="Self.product_category_fk" FromRole="product" ToRole="category" />
+          <NavigationProperty Name="comments" Relationship="Self.comment_product_fk" FromRole="product" ToRole="comment" />
+          <NavigationProperty Name="discounts" Relationship="Self.discountId_productId_fk" FromRole="product" ToRole="discount" />
+          <NavigationProperty Name="importproducts" Relationship="Self.importId_productd_fk" FromRole="product" ToRole="importproduct" />
+          <NavigationProperty Name="productdetails" Relationship="Self.productDetailId_productId_fk" FromRole="product" ToRole="productdetail" />
+          <NavigationProperty Name="vouchers" Relationship="Self.voucherId_ProductId_fk" FromRole="product" ToRole="voucher" />
+          <NavigationProperty Name="vouchers1" Relationship="Self.product_voucher" FromRole="product" ToRole="voucher" />
+        </EntityType>
+        <EntityType Name="productdetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <Property Name="specId" Type="Int32" Nullable="false" />
+          <Property Name="colorId" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" />
+          <Property Name="imgUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="color" Relationship="Self.productDetailId_colorId_fk" FromRole="productdetail" ToRole="color" />
+          <NavigationProperty Name="importproductdetails" Relationship="Self.improDetail_productDetail_fk" FromRole="productdetail" ToRole="importproductdetail" />
+          <NavigationProperty Name="orderdetails" Relationship="Self.orderDetail_ProductDetailId_fk" FromRole="productdetail" ToRole="orderdetail" />
+          <NavigationProperty Name="product" Relationship="Self.productDetailId_productId_fk" FromRole="productdetail" ToRole="product" />
+          <NavigationProperty Name="spec" Relationship="Self.proDetail_spec_fk" FromRole="productdetail" ToRole="spec" />
+          <NavigationProperty Name="storages" Relationship="Self.productDetail_storage_fk" FromRole="productdetail" ToRole="storage" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="auths" Relationship="Self.authId_RoleId_fk" FromRole="role" ToRole="auth" />
+          <NavigationProperty Name="roleusers" Relationship="Self.roleUserId_RoleId_fk" FromRole="role" ToRole="roleuser" />
+        </EntityType>
+        <EntityType Name="roleuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="roleId" Type="Int32" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="role" Relationship="Self.roleUserId_RoleId_fk" FromRole="roleuser" ToRole="role" />
+          <NavigationProperty Name="user" Relationship="Self.roleUserId_UserId_fk" FromRole="roleuser" ToRole="users" />
+        </EntityType>
+        <EntityType Name="spec">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="productdetails" Relationship="Self.proDetail_spec_fk" FromRole="spec" ToRole="productdetail" />
+          <NavigationProperty Name="specdetails" Relationship="Self.specId_specDetailId_fk" FromRole="spec" ToRole="specdetail" />
+        </EntityType>
+        <EntityType Name="specdetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="specId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="spec" Relationship="Self.specId_specDetailId_fk" FromRole="specdetail" ToRole="spec" />
+        </EntityType>
+        <EntityType Name="storage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productDetailId" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="productdetail" Relationship="Self.productDetail_storage_fk" FromRole="storage" ToRole="productdetail" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="importproducts" Relationship="Self.importId_supplierid_fk" FromRole="supplier" ToRole="importproduct" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="comments" Relationship="Self.comment_user_fk" FromRole="users" ToRole="comment" />
+          <NavigationProperty Name="orders" Relationship="Self.oderId_UsersId_fk" FromRole="users" ToRole="order" />
+          <NavigationProperty Name="roleusers" Relationship="Self.roleUserId_UserId_fk" FromRole="users" ToRole="roleuser" />
+        </EntityType>
+        <EntityType Name="voucher">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" />
+          <Property Name="endDate" Type="DateTime" />
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="activeFlag" Type="Int32" Nullable="false" />
+          <Property Name="createDate" Type="DateTime" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="product" Relationship="Self.voucherId_ProductId_fk" FromRole="voucher" ToRole="product" />
+          <NavigationProperty Name="products" Relationship="Self.product_voucher" FromRole="voucher" ToRole="product" />
+        </EntityType>
+        <Association Name="authId_MenuId_fk">
+          <End Role="menu" Type="Self.menu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="auth" Type="Self.auth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="auth">
+              <PropertyRef Name="menuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="authId_RoleId_fk">
+          <End Role="role" Type="Self.role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="auth" Type="Self.auth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="auth">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productId_BrandId_fk">
+          <End Role="brand" Type="Self.brand" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="brand">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="brandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_ibfk_1">
+          <End Role="category" Type="Self.category" Multiplicity="0..1" />
+          <End Role="category1" Type="Self.category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="category1">
+              <PropertyRef Name="parentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="product_category_fk">
+          <End Role="category" Type="Self.category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productDetailId_colorId_fk">
+          <End Role="color" Type="Self.color" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="productdetail" Type="Self.productdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="color">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productdetail">
+              <PropertyRef Name="colorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="comment_ibfk_1">
+          <End Role="comment" Type="Self.comment" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="comment1" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comment1">
+              <PropertyRef Name="parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="comment_product_fk">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="comment_user_fk">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="discountId_productId_fk">
+          <End Role="product" Type="Self.product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="discount" Type="Self.discount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="discount">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="importId_productd_fk">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="importproduct" Type="Self.importproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="importproduct">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="importId_supplierid_fk">
+          <End Role="supplier" Type="Self.supplier" Multiplicity="1" />
+          <End Role="importproduct" Type="Self.importproduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="importproduct">
+              <PropertyRef Name="supplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="improDetail_import_fk">
+          <End Role="importproduct" Type="Self.importproduct" Multiplicity="1" />
+          <End Role="importproductdetail" Type="Self.importproductdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="importproduct">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="importproductdetail">
+              <PropertyRef Name="importProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="improDetail_productDetail_fk">
+          <End Role="productdetail" Type="Self.productdetail" Multiplicity="1" />
+          <End Role="importproductdetail" Type="Self.importproductdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productdetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="importproductdetail">
+              <PropertyRef Name="productDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oderId_UsersId_fk">
+          <End Role="users" Type="Self.user" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="orderDetail_oderId_fk">
+          <End Role="order" Type="Self.order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="orderdetail" Type="Self.orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orderdetail">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="orderDetail_ProductDetailId_fk">
+          <End Role="productdetail" Type="Self.productdetail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="orderdetail" Type="Self.orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productdetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="orderdetail">
+              <PropertyRef Name="productDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productDetailId_productId_fk">
+          <End Role="product" Type="Self.product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="productdetail" Type="Self.productdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productdetail">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="voucherId_ProductId_fk">
+          <End Role="product" Type="Self.product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="voucher" Type="Self.voucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="voucher">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="proDetail_spec_fk">
+          <End Role="spec" Type="Self.spec" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="productdetail" Type="Self.productdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="spec">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productdetail">
+              <PropertyRef Name="specId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productDetail_storage_fk">
+          <End Role="productdetail" Type="Self.productdetail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="storage" Type="Self.storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productdetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="storage">
+              <PropertyRef Name="productDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="roleUserId_RoleId_fk">
+          <End Role="role" Type="Self.role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="roleuser" Type="Self.roleuser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="roleuser">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="roleUserId_UserId_fk">
+          <End Role="users" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="roleuser" Type="Self.roleuser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="roleuser">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="specId_specDetailId_fk">
+          <End Role="spec" Type="Self.spec" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="specdetail" Type="Self.specdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="spec">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="specdetail">
+              <PropertyRef Name="specId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="product_voucher">
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <End Role="voucher" Type="Self.voucher" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="dotnetstorephoneEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="auths" EntityType="Self.auth" />
+          <EntitySet Name="brands" EntityType="Self.brand" />
+          <EntitySet Name="categories" EntityType="Self.category" />
+          <EntitySet Name="colors" EntityType="Self.color" />
+          <EntitySet Name="comments" EntityType="Self.comment" />
+          <EntitySet Name="discounts" EntityType="Self.discount" />
+          <EntitySet Name="importproducts" EntityType="Self.importproduct" />
+          <EntitySet Name="importproductdetails" EntityType="Self.importproductdetail" />
+          <EntitySet Name="menus" EntityType="Self.menu" />
+          <EntitySet Name="orders" EntityType="Self.order" />
+          <EntitySet Name="orderdetails" EntityType="Self.orderdetail" />
+          <EntitySet Name="products" EntityType="Self.product" />
+          <EntitySet Name="productdetails" EntityType="Self.productdetail" />
+          <EntitySet Name="roles" EntityType="Self.role" />
+          <EntitySet Name="roleusers" EntityType="Self.roleuser" />
+          <EntitySet Name="specs" EntityType="Self.spec" />
+          <EntitySet Name="specdetails" EntityType="Self.specdetail" />
+          <EntitySet Name="storages" EntityType="Self.storage" />
+          <EntitySet Name="suppliers" EntityType="Self.supplier" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="vouchers" EntityType="Self.voucher" />
+          <AssociationSet Name="authId_MenuId_fk" Association="Self.authId_MenuId_fk">
+            <End Role="menu" EntitySet="menus" />
+            <End Role="auth" EntitySet="auths" />
+          </AssociationSet>
+          <AssociationSet Name="authId_RoleId_fk" Association="Self.authId_RoleId_fk">
+            <End Role="role" EntitySet="roles" />
+            <End Role="auth" EntitySet="auths" />
+          </AssociationSet>
+          <AssociationSet Name="productId_BrandId_fk" Association="Self.productId_BrandId_fk">
+            <End Role="brand" EntitySet="brands" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="category_ibfk_1" Association="Self.category_ibfk_1">
+            <End Role="category" EntitySet="categories" />
+            <End Role="category1" EntitySet="categories" />
+          </AssociationSet>
+          <AssociationSet Name="product_category_fk" Association="Self.product_category_fk">
+            <End Role="category" EntitySet="categories" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="productDetailId_colorId_fk" Association="Self.productDetailId_colorId_fk">
+            <End Role="color" EntitySet="colors" />
+            <End Role="productdetail" EntitySet="productdetails" />
+          </AssociationSet>
+          <AssociationSet Name="comment_ibfk_1" Association="Self.comment_ibfk_1">
+            <End Role="comment" EntitySet="comments" />
+            <End Role="comment1" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="comment_product_fk" Association="Self.comment_product_fk">
+            <End Role="product" EntitySet="products" />
+            <End Role="comment" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="comment_user_fk" Association="Self.comment_user_fk">
+            <End Role="users" EntitySet="users" />
+            <End Role="comment" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="discountId_productId_fk" Association="Self.discountId_productId_fk">
+            <End Role="product" EntitySet="products" />
+            <End Role="discount" EntitySet="discounts" />
+          </AssociationSet>
+          <AssociationSet Name="importId_productd_fk" Association="Self.importId_productd_fk">
+            <End Role="product" EntitySet="products" />
+            <End Role="importproduct" EntitySet="importproducts" />
+          </AssociationSet>
+          <AssociationSet Name="importId_supplierid_fk" Association="Self.importId_supplierid_fk">
+            <End Role="supplier" EntitySet="suppliers" />
+            <End Role="importproduct" EntitySet="importproducts" />
+          </AssociationSet>
+          <AssociationSet Name="improDetail_import_fk" Association="Self.improDetail_import_fk">
+            <End Role="importproduct" EntitySet="importproducts" />
+            <End Role="importproductdetail" EntitySet="importproductdetails" />
+          </AssociationSet>
+          <AssociationSet Name="improDetail_productDetail_fk" Association="Self.improDetail_productDetail_fk">
+            <End Role="productdetail" EntitySet="productdetails" />
+            <End Role="importproductdetail" EntitySet="importproductdetails" />
+          </AssociationSet>
+          <AssociationSet Name="oderId_UsersId_fk" Association="Self.oderId_UsersId_fk">
+            <End Role="users" EntitySet="users" />
+            <End Role="order" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="orderDetail_oderId_fk" Association="Self.orderDetail_oderId_fk">
+            <End Role="order" EntitySet="orders" />
+            <End Role="orderdetail" EntitySet="orderdetails" />
+          </AssociationSet>
+          <AssociationSet Name="orderDetail_ProductDetailId_fk" Association="Self.orderDetail_ProductDetailId_fk">
+            <End Role="productdetail" EntitySet="productdetails" />
+            <End Role="orderdetail" EntitySet="orderdetails" />
+          </AssociationSet>
+          <AssociationSet Name="productDetailId_productId_fk" Association="Self.productDetailId_productId_fk">
+            <End Role="product" EntitySet="products" />
+            <End Role="productdetail" EntitySet="productdetails" />
+          </AssociationSet>
+          <AssociationSet Name="voucherId_ProductId_fk" Association="Self.voucherId_ProductId_fk">
+            <End Role="product" EntitySet="products" />
+            <End Role="voucher" EntitySet="vouchers" />
+          </AssociationSet>
+          <AssociationSet Name="proDetail_spec_fk" Association="Self.proDetail_spec_fk">
+            <End Role="spec" EntitySet="specs" />
+            <End Role="productdetail" EntitySet="productdetails" />
+          </AssociationSet>
+          <AssociationSet Name="productDetail_storage_fk" Association="Self.productDetail_storage_fk">
+            <End Role="productdetail" EntitySet="productdetails" />
+            <End Role="storage" EntitySet="storages" />
+          </AssociationSet>
+          <AssociationSet Name="roleUserId_RoleId_fk" Association="Self.roleUserId_RoleId_fk">
+            <End Role="role" EntitySet="roles" />
+            <End Role="roleuser" EntitySet="roleusers" />
+          </AssociationSet>
+          <AssociationSet Name="roleUserId_UserId_fk" Association="Self.roleUserId_UserId_fk">
+            <End Role="users" EntitySet="users" />
+            <End Role="roleuser" EntitySet="roleusers" />
+          </AssociationSet>
+          <AssociationSet Name="specId_specDetailId_fk" Association="Self.specId_specDetailId_fk">
+            <End Role="spec" EntitySet="specs" />
+            <End Role="specdetail" EntitySet="specdetails" />
+          </AssociationSet>
+          <AssociationSet Name="product_voucher" Association="Self.product_voucher">
+            <End Role="product" EntitySet="products" />
+            <End Role="voucher" EntitySet="vouchers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dotnetstorephone2ModelStoreContainer" CdmEntityContainer="dotnetstorephoneEntities1">
+          <EntitySetMapping Name="auths">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.auth">
+              <MappingFragment StoreEntitySet="auth">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="menuId" ColumnName="menuId" />
+                <ScalarProperty Name="Permission" ColumnName="Permission" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="brands">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.brand">
+              <MappingFragment StoreEntitySet="brand">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+                <ScalarProperty Name="parentId" ColumnName="parentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="colors">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.color">
+              <MappingFragment StoreEntitySet="color">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comments">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.comment">
+              <MappingFragment StoreEntitySet="comment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+                <ScalarProperty Name="reply" ColumnName="reply" />
+                <ScalarProperty Name="parent" ColumnName="parent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="discounts">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.discount">
+              <MappingFragment StoreEntitySet="discount">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="percentage" ColumnName="percentage" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="importproducts">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.importproduct">
+              <MappingFragment StoreEntitySet="importproduct">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="supplierId" ColumnName="supplierId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="importproductdetails">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.importproductdetail">
+              <MappingFragment StoreEntitySet="importproductdetail">
+                <ScalarProperty Name="importProductId" ColumnName="importProductId" />
+                <ScalarProperty Name="productDetailId" ColumnName="productDetailId" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menus">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.menu">
+              <MappingFragment StoreEntitySet="menu">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="parentId" ColumnName="parentId" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="orderIndex" ColumnName="orderIndex" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.order">
+              <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="payment" ColumnName="payment" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderdetails">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.orderdetail">
+              <MappingFragment StoreEntitySet="orderdetail">
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="productDetailId" ColumnName="productDetailId" />
+                <ScalarProperty Name="quanlity" ColumnName="quanlity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="brandId" ColumnName="brandId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="imgMain" ColumnName="imgMain" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productdetails">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.productdetail">
+              <MappingFragment StoreEntitySet="productdetail">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="specId" ColumnName="specId" />
+                <ScalarProperty Name="colorId" ColumnName="colorId" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="imgUrl" ColumnName="imgUrl" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roleusers">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.roleuser">
+              <MappingFragment StoreEntitySet="roleuser">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="specs">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.spec">
+              <MappingFragment StoreEntitySet="spec">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="specdetails">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.specdetail">
+              <MappingFragment StoreEntitySet="specdetail">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="specId" ColumnName="specId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="storages">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.storage">
+              <MappingFragment StoreEntitySet="storage">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="productDetailId" ColumnName="productDetailId" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="suppliers">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.supplier">
+              <MappingFragment StoreEntitySet="supplier">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vouchers">
+            <EntityTypeMapping TypeName="dotnetstorephone2Model.voucher">
+              <MappingFragment StoreEntitySet="voucher">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="activeFlag" ColumnName="activeFlag" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="product_voucher" TypeName="dotnetstorephone2Model.product_voucher" StoreEntitySet="product_voucher">
+            <EndProperty Name="product">
+              <ScalarProperty Name="id" ColumnName="productId" />
+            </EndProperty>
+            <EndProperty Name="voucher">
+              <ScalarProperty Name="id" ColumnName="voucherId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,79 @@
+﻿@model Website_StorePhone3.Models.UserLogin
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content d-md-flex justify-content-between align-items-center">
+                    <div class="mb-3 mb-md-0">
+                        <h1>Login</h1>
+
+                    </div>
+                    <div class="page_link">
+                        <a href="index.html">Home</a>
+                        <a href="cart.html">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>*@
+<hr />
+<section class="cart_area">
+    <div class="container">
+
+
+        @using (Html.BeginForm("Login", "MyUser", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="cart_inner">
+                <div class="table-responsive" style="width: 500px; margin: auto;">
+                    <div>
+
+                        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Login</h1>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Username)<br />
+                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password)<br />
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="checkbox mb-3">
+                            <label>
+                                @Html.EditorFor(model => model.RememberMe)
+                                @Html.LabelFor(model => model.RememberMe)
+                                @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success" style="width: 100%;">Submit</button>
+                        </div>
+                        <div style="text-align: center;">
+                            <span style="margin-bottom: 10px;">Forgot<a href="#" style="color: #4fa746;"> Username / Password?</a></span><br>
+                            <span>Create Account?<a href="@Url.Action("Register")" style="color: #4fa746"> Sign up</a></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            if (ViewBag.Message != null)
+            {
+                <div class="alert alert-danger">
+                    <strong>Error! :</strong>@ViewBag.Message
+                </div>
+            }
+        }
+
+    </div>
+</section>
+<script src="@Url.Content("~/Content/client/js/jquery-3.2.1.min.js")" language="javascript" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/client/js/numeral.min.js")" language="javascript" type="text/javascript"></script>
+

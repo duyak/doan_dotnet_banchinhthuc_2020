@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Apple";
+    Layout = "~/Views/Shared/_layoutShop.cshtml";
+    List<Website_StorePhone3.Models.db.product> l = ViewBag.ListApple;
+}
+
+<section class="inspired_product_area section_gap_bottom_custom">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="main_title">
+                    <h2><span>Danh mục Apple</span></h2>
+                    <!--                    <p>Bring called seed first of third give itself now ment</p>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="table-sanpham">
+
+            @foreach (Website_StorePhone3.Models.db.product pro in l)
+            {
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <div class="product-img">
+                            <img src="~/Content/client/img/product/@pro.imgMain" height="266" width="266" />
+
+
+                            <div class="p_icon">
+                                <a href="@Url.Action("ProductDetail","ProductDetail",new {id = pro.id })">
+                                    <i class="ti-eye"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="ti-heart"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="ti-shopping-cart"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product-btm">
+                            <a href="#" class="d-block">
+                                <h4>@pro.name</h4>
+                            </a>
+                            <div class="mt-3">
+                                <span class="mr-4 tien">@pro.code</span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+
+
+
+
+
+        </div>
+
+    </div>
+</section>
+<script src="@Url.Content("~/Content/client/js/jquery-3.2.1.min.js")" language="javascript" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/client/js/numeral.min.js")" language="javascript" type="text/javascript"></script>
+<script>
+    $('.tien').each(function () {
+        $(this).text(numeral($(this).text()).format('0,0') + " VND");
+    });
+</script>

@@ -1,0 +1,852 @@
+﻿
+@{
+    ViewBag.Title = "voucherList";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+    List<Website_StorePhone3.Models.db.voucher> vouchers = ViewBag.vouchers;
+    List<Website_StorePhone3.Models.Entities.Category> categories = ViewBag.cates;
+    var baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
+}
+
+<!-- modal hien thi sp cua voucher -->
+<div id="product_list_modal" class="modal fade bd-example-modal-lg"
+     tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content p-1">
+            <div class="modal-header">
+
+                <button data-toggle="modal" data-target="#add_modal"
+                        type="button" class="btn btn-primary" style="float: right;">
+                    <span aria-hidden="true" onclick="loadSelectedProductVoucher();">Add</span>
+                </button>
+
+
+            </div>
+
+            <table class="table table-striped rounded table-secondary">
+
+                <thead class="thead-dark">
+                    <tr>
+                        <th colspan="3">Product List</th>
+                    </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Choose</th>
+                    </tr>
+                </thead>
+                <tbody id="product_list_table">
+                </tbody>
+            </table>
+
+
+            <br />
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- modal them voucher product -->
+<div id="add_modal" class="modal fade bd-example-modal-lg"
+     tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content p-1">
+            <div class="modal-header">
+                <h4 class="modal-title">Add voucher</h4>
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+
+            </div>
+            <form id="form-add-product-voucher" action="@Url.Action("addVoucherProduct","Voucher")" method="post">
+                <input id="vouId" type="hidden" name="voucherId" />
+                <table class="table table-striped rounded table-secondary">
+
+                    <thead class="thead-dark">
+                        <tr>
+                            <td>Chọn mục sản phẩm</td>
+                            <td>
+
+                                @foreach (Website_StorePhone3.Models.Entities.Category category in categories)
+                                {
+                                    <a class="btn btn-info" style="margin-top: 5px;"
+                                       data-toggle="modal" data-target="#choose_product_modal"
+                                       onclick="chooseProduct(@category.id);">@category.name</a>
+
+                                }
+
+
+
+                            </td>
+                        </tr>
+                    </thead>
+
+                </table>
+                <table class="table table-striped rounded table-secondary">
+                    <thead class="thead-dark">
+
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+
+
+                            <th>Choose</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="productVoucher_selected">
+                    </tbody>
+                </table>
+
+                <div class="modal-footer">
+                    <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+
+            <br />
+
+
+
+
+        </div>
+
+    </div>
+</div>
+<div class="container" style="margin-top: 10px;">
+    <div class="row justify-content-end align-items-md-end">
+        <div class="col-auto">
+            <button data-toggle="modal" data-target="#addVoucher_modal" id="btn-add-new-voucher"
+                    class="btn btn-primary border rounded add" type="button"
+                    style="margin-right: 5px; margin-left: 5px;margin-bottom:5px">
+                New Voucher
+            </button>
+            <br />
+            <div class="table-responsive table-bordered" style="margin-right: 5px; margin-left: 5px;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Start date</th>
+                            <th>End date</th>
+                            <th>Status</th>
+                            <th colspan="3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < vouchers.Count; i++)
+                        {
+                            <tr>
+                                <td>@(i+1)</td>
+                                <td>@vouchers[i].name</td>
+                                <td>@vouchers[i].product.name</td>
+                                <td class="price">@vouchers[i].price</td>
+                                <td>@vouchers[i].startDate</td>
+                                <td>@vouchers[i].endDate</td>
+                                <td>@vouchers[i].status</td>
+
+                                <td class="d-inline-flex" colspan="3">
+                                    <div class="row">
+                                        <div class="col d-inline-flex">
+                                            <button data-toggle="modal" id="btn_edit" data-target="#addVoucher_modal"
+                                                    class="btn btn-edit border rounded edit" type="button"
+                                                    style="margin-right: 5px; margin-left: 5px;">
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            </button>
+
+                                            <button data-toggle="modal"
+                                                    data-target="#product_list_modal"
+                                                    onclick="loadProductVoucher(@vouchers[i].id)"
+                                                    class="btn btn-info border rounded" type="button"
+                                                    style="margin-right: 5px; margin-left: 5px;">
+                                                <i class="fa fa-info" aria-hidden="true"></i>
+                                            </button>
+                                            <button onclick="deleteVoucher(@vouchers[i].id);" data-toggle="modal" data-target="#delete_modal_voucher"
+                                                    class="btn btn-danger border rounded" type="button"
+                                                    style="margin-right: 5px; margin-left: 5px;">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </button>
+                                            <input type="hidden" id="id" value="@vouchers[i].id">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        }
+
+
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
+
+
+
+<input type="hidden" id="txt_voucherId">
+
+
+<!-- modal xoa product voucher -->
+<div id="delete_modal" class="modal fade" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete</h4>
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <h6>Delete this voucher?</h6>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form id="form_delete_product_voucher" action="" method="post">
+                    <input id="voucherId" type="hidden" name="voucherId" />
+
+                    <button class="btn btn-success" type="submit">Confirm</button>
+
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"
+                            aria-label="Close">
+                        Close
+                    </button>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal xoa product voucher -->
+<!-- modal xoa voucher -->
+<div id="delete_modal_voucher" class="modal fade" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete</h4>
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <h6>Delete this voucher?</h6>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form id="form_delete_voucher" action="@Url.Action("deleteVoucher","RestVoucher")" method="post">
+                    <input id="deleteVoucherId" type="hidden" name="voucherId" />
+
+                    <button class="btn btn-success" type="submit">Confirm</button>
+
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"
+                            aria-label="Close">
+                        Close
+                    </button>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modal xoa voucher -->
+<!-- modal them moi voucher -->
+
+<div id="addVoucher_modal" class="modal fade bd-example-modal-lg"
+     tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content p-1">
+            <div class="modal-header">
+                <h4 id="title" class="modal-title">Add new voucher</h4>
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form id="addVoucher-form" action="@Url.Action("addVoucher","RestVoucher")" method="post">
+
+
+                <input name="productId" id="txt_proId" type="hidden"
+                       required="required">
+                <input id="voucherAddId" name="voucherId" type="hidden"
+                       required="required">
+
+                <table class="table table-striped rounded table-secondary">
+
+                    <thead class="thead-dark">
+                        <tr>
+                            <td>Chọn mục sản phẩm</td>
+                            <td>
+
+                                @foreach (Website_StorePhone3.Models.Entities.Category category in categories)
+                                {
+                                    <a class="btn btn-info" style="margin-top: 5px;"
+                                       data-toggle="modal" data-target="#choose_product_modal"
+                                       onclick="chooseProductToAddVoucher(@category.id);">@category.name</a>
+
+                                }
+
+
+
+                            </td>
+
+
+                        </tr>
+
+                        <tr>
+                            <td style="width: auto; max-width: 0; min-width: 0;">
+                                Product selected
+                            </td>
+                            <td>
+                                <select class="form-control" disabled="disabled"
+                                        id="select_opt_product">
+                                    <option>None</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Voucher name</td>
+                            <td>
+                                <input class="form-control" type="text" name="name" id="name"
+                                       required="required">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td>
+                                <input class="form-control" type="number"
+                                       required="required" name="price" id="price">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Start date</td>
+                            <td>
+                                <input class="form-control" type="date"
+                                       required="required" name="startDate" id="startDate">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>End date</td>
+                            <td>
+                                <input class="form-control" type="date"
+                                       required="required" name="endDate" id="endDate">
+                            </td>
+                        </tr>
+                    </thead>
+
+                </table>
+
+                <div class="modal-footer">
+                    <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+
+            <br />
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+<!-- modal chon sp khi thêm mới voucher -->
+<div id="choose_product_modal" class="modal fade bd-example-modal-lg"
+     tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content p-1">
+
+
+            <table class="table table-striped rounded table-secondary">
+                <thead class="thead-dark">
+                    <tr>
+                        <th colspan="3">Select Product</th>
+                    </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Choose</th>
+                    </tr>
+                </thead>
+                <tbody id="product_table">
+                </tbody>
+            </table>
+
+
+            <br />
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<!--/ modal them moi voucher -->
+
+<script src="@Url.Content("~/Content/client/js/jquery-3.2.1.min.js")" language="javascript" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/client/js/numeral.min.js")" language="javascript" type="text/javascript"></script>
+<script>
+
+    $(document).ready(function () {
+        $('.price').each(function () {
+            $(this).text(numeral($(this).text()).format('0,0') + " VND");
+        });
+
+        $('#btn-add-new-voucher').on('click', function () {
+            console.log("adddddddddddddddddddddddddddddddddddddddd");
+            $('#addVoucher_modal #id').val('');
+
+            $('#addVoucher_modal #name').val('');
+            $('#addVoucher_modal #price').val('');
+            $('#addVoucher_modal #startDate').val('');
+            $('#addVoucher_modal #endDate').val('');
+            var item = document.getElementById("select_opt_product");
+            item.innerHTML = "<option>"
+                + "None"
+                + "</option>"
+                ;
+            document.getElementById("title").innerHTML = "Add new voucher";
+        });
+
+        $('table .edit').on('click', function () {
+
+            var id = $(this).parent().find('#id').val();
+
+            if (id) {
+                console.log("iddddddddddddddddddddddddddd" + id);
+                document.getElementById("title").innerHTML = "Edit voucher";
+            }
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:44306/RestVoucher/findVoucherById",
+                data: {
+                    voucherId: id
+                },
+
+
+                success: function (res) {
+                    console.log(res);
+                    var item = document.getElementById("select_opt_product");
+                    item.innerHTML = "<option value=\"" + res.product.id + "\">"
+                        + res.product.name
+                        + "</option>"
+                        ;
+
+                    document.getElementById("txt_proId").value = res.product.id;
+                    $('#addVoucher_modal #voucherAddId').val(id);
+
+                    $('#addVoucher_modal #name').val(res.name);
+                    $('#addVoucher_modal #price').val(res.price);
+                    document.getElementById("startDate").value = res.sDate;
+                    document.getElementById("endDate").value = res.eDate;
+                }
+
+            });
+        });
+    });
+
+
+    function loadProductVoucher(voucherId) {
+
+        document.getElementById("txt_voucherId").value = voucherId;
+        document.getElementById("vouId").value = voucherId;
+        document.getElementById("voucherId").value = voucherId;
+        $
+            .ajax({
+                type: "GET",
+                url: "https://localhost:44306/RestVoucher/loadProduct",
+                data: {
+                    voucherId: voucherId
+
+                },
+
+                success: function (res) {
+                    console.log(res);
+
+                    var item = document.getElementById("product_list_table");
+                    var html = "";
+                    if (res.length > 0) {
+                        for (var i = 0; i < res.length; i++) {
+
+                            html = html
+                                + "<tr id=\"" + res[i].id + "\">"
+
+                                + "<td>"
+                                + (i + 1)
+                                + "</td>"
+                                + "<td>"
+                                + res[i].name
+                                + "</td>"
+
+
+                                + "<td>"
+                                + "<button data-toggle=\"modal\" data-target=\"#delete_modal\" class=\"btn btn-danger border rounded\""
+                                + "onclick=removeProductVoucher("
+                                + res[i].id
+                                + ")"
+                                + "><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button>"
+                                + "</td>" + "</tr>";
+
+                        }
+                    }
+
+                    item.innerHTML = html;
+
+
+                }
+            });
+
+    }
+    function removeProductVoucher(productId) {
+
+        $('#form_delete_product_voucher').attr('action', '@baseUrl/Voucher/deleteProductVoucher?productId=' + productId);
+
+    }
+    function deleteVoucher(voucherId) {
+
+        console.log("voucher id " + voucherId);
+        document.getElementById("deleteVoucherId").value = voucherId;
+
+    }
+
+    //add mới 1 voucher
+    $('#form_delete_voucher').on('submit', function (event) {
+        var vouId = document.getElementById("deleteVoucherId").value;
+
+        var self = this;
+        var form = $(this);
+
+
+        if (form.data('requestRunning')) {
+            return;
+        }
+
+        form.data('requestRunning', true);
+        event.preventDefault();
+
+        $.ajax({
+            url: "https://localhost:44306/RestVoucher/deleteVoucher",
+            type: form.attr("method"),
+            data: form.serialize(),
+            success: function (res) {
+                console.log(res);
+                if (res) {
+                    if (res.message == "FAIL") {
+
+                    }
+                    else {
+                        location.reload();
+                    }
+
+
+                }
+
+            }
+
+        });
+
+    });
+
+    function chooseProduct(cateId) {
+        console.log("cate id is" + cateId);
+
+        $
+            .ajax({
+                type: "GET",
+                url: "https://localhost:44306/RestVoucher/getListProductByCategoryId",
+                data: {
+                    categoryId: cateId
+                },
+
+                success: function (res) {
+                    console.log(res);
+
+                    var item = document.getElementById("product_table");
+                    var html = "";
+                    if (res.length > 0) {
+                        for (var i = 0; i < res.length; i++) {
+
+                            html = html
+                                + "<tr id=\"" + res[i].id + "\">"
+
+                                + "<td>"
+                                + i
+                                + "</td>"
+                                + "<td>"
+                                + res[i].name
+                                + "</td>"
+
+
+                                + "<td>"
+                                + "<button class=\"btn btn-primary border rounded\""
+                                + "onclick=addProductVoucher("
+                                + res[i].id
+                                + ")"
+                                + "><i class=\"fa fa-get-pocket\" aria-hidden=\"true\"></i></button>"
+                                + "</td>" + "</tr>";
+
+                        }
+                    }
+
+                    item.innerHTML = html;
+
+
+                }
+            });
+    }
+
+    function addProductVoucher(productId) {
+        var voucherId = document.getElementById("txt_voucherId").value;
+        console.log("id voucher isssssssssssssssssss" + document.getElementById("txt_voucherId").value);
+
+
+        $
+            .ajax({
+                type: "GET",
+                url: "https://localhost:44306/RestVoucher/selectedProductVoucher",
+                data: {
+                    productId: productId,
+                    voucherId: voucherId
+                },
+
+                success: function (res) {
+                    console.log(res);
+
+                    var item = document.getElementById("productVoucher_selected");
+                    var html = "";
+                    if (res.length > 0) {
+                        for (var i = 0; i < res.length; i++) {
+
+                            html = html
+                                + "<tr id=\"" + res[i].id + "\">"
+
+                                + "<td>"
+                                + i
+                                + "</td>"
+                                + "<td>"
+                                + res[i].name
+                                + "</td>"
+
+
+                                + "<td>"
+                                + "<button class=\"btn btn-danger btn-sm\""
+                                + "onclick=deleteProductVoucher("
+                                + res[i].id
+                                + ")"
+                                + "><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button>"
+                                + "</td>" + "</tr>";
+
+                        }
+                    }
+
+                    item.innerHTML = html;
+
+
+                }
+            });
+    }
+
+    function deleteProductVoucher(productId) {
+        var voucherId = document.getElementById("txt_voucherId").value;
+        console.log("id voucher isssssssssssssssssss" + voucherId);
+        console.log("id product isssssssssssssssssss" + productId);
+        $
+            .ajax({
+                type: "GET",
+                url: "https://localhost:44306/RestVoucher/deleteProductVoucherInCart",
+                data: {
+                    productId: productId,
+                    voucherId: voucherId
+                },
+
+                success: function (res) {
+                    console.log(res);
+
+                    var item = document.getElementById("productVoucher_selected");
+                    var html = "";
+                    if (res.length > 0) {
+                        for (var i = 0; i < res.length; i++) {
+
+                            html = html
+                                + "<tr id=\"" + res[i].id + "\">"
+
+                                + "<td>"
+                                + i
+                                + "</td>"
+                                + "<td>"
+                                + res[i].name
+                                + "</td>"
+
+
+                                + "<td>"
+                                + "<button class=\"btn btn-info btn-sm\""
+                                + "onclick=removeProductVoucher("
+                                + res[i].id
+                                + ")"
+                                + "><i class=\"fa fa-window-close\" aria-hidden=\"true\"></i></button>"
+                                + "</td>" + "</tr>";
+
+                        }
+                    }
+
+                    item.innerHTML = html;
+
+
+                }
+            });
+    }
+
+
+
+    // khi them mới 1 voucher , click vào btn item sp, sẽ hiện thị modal ds sp theo item đó
+    // fn này đổ data ra modal
+    function chooseProductToAddVoucher(cateId) {
+
+
+        $
+            .ajax({
+                type: "GET",
+                url: "https://localhost:44306/RestVoucher/getListProductByCategoryId",
+                data: {
+                    categoryId: cateId
+                },
+
+                success: function (res) {
+                    console.log(res);
+
+                    var item = document.getElementById("product_table");
+                    var html = "";
+                    if (res.length > 0) {
+                        for (var i = 0; i < res.length; i++) {
+
+                            html = html
+                                + "<tr id=\"" + res[i].id + "\">"
+
+                                + "<td>"
+                                + (i+1)
+                                + "</td>"
+                                + "<td>"
+                                + res[i].name
+                                + "</td>"
+
+
+                                + "<td>"
+                                + "<button class=\"btn btn-info btn-sm\""
+                                + "onclick=chooseProductVoucher("
+                                + res[i].id
+                                + ")"
+                                + "><i class=\"fa fa-get-pocket\" aria-hidden=\"true\"></i></button>"
+                                + "</td>" + "</tr>";
+
+                        }
+                    }
+
+                    item.innerHTML = html;
+
+
+                }
+            });
+    }
+    // khi them mới 1 voucher, click vào btn item sp, sẽ hiện thị modal ds sp theo item đó
+    // chọn 1 sp, sau đó đổ dữ liệu ra option "Product selected"
+
+    function chooseProductVoucher(productId) {
+        $
+            .ajax({
+                type: "GET",
+                url: "https://localhost:44306/RestVoucher/chooseProductVoucher",
+                data: {
+                    productId: productId
+                },
+                success: function (res) {
+                    console.log(res);
+
+                    var item = document.getElementById("select_opt_product");
+                    console.log(item);
+
+                    if (res) {
+
+
+                        document.getElementById("txt_proId").value = res.id;
+
+                        item.innerHTML = "<option value=\"" + res.id + "\">"
+                            + res.name
+                            + "</option>"
+                            ;
+                    }
+
+                }
+            });
+    }
+
+
+
+
+    //add mới 1 voucher
+    $('#addVoucher-form').on('submit', function (event) {
+
+        console.log("cc");
+        var self = this;
+        var form = $(this);
+
+
+        if (form.data('requestRunning')) {
+            return;
+        }
+
+        form.data('requestRunning', true);
+        event.preventDefault();
+
+        $.ajax({
+            url: form.attr("action"),
+            type: form.attr("method"),
+            data: form.serialize(),
+            success: function (res) {
+                console.log(res);
+                if (res) {
+                    if (res.message == "FAIL") {
+
+                    }
+                    else {
+                        location.reload();
+                    }
+
+
+                }
+
+            }
+
+        });
+
+    });
+</script>

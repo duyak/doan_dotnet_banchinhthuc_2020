@@ -1,0 +1,324 @@
+﻿
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Website_StorePhone3.Models.Entities.Cart> carts = ViewBag.carts;
+    List<Website_StorePhone3.Models.db.voucher> vouchers = ViewBag.vouchers;
+}
+
+<!--================Home Banner Area =================-->
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content d-md-flex justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <h2>Cart</h2>
+                    <p>Very us move be blessed multiply night</p>
+                </div>
+                <div class="page_link">
+                    <a href="index.html">Home</a>
+                    <a href="cart.html">Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+<!--================Cart Area =================-->
+<section class="cart_area">
+    <div class="container">
+
+        <div class="module no-item" id="no-item"
+             style="text-align: center; margin-top: 50px; display: none;">
+            <i class="fa fa-frown-o fa-4x"
+               style="margin-bottom: 30px; font-size: 30em; display: inline-block; font: normal normal normal 30px FontAwesome; font-size: inherit; text-rendering: auto; -webkit-font-smoothing: antialiased;"></i>
+            <p style="font-size: 22px; font-weight: 300; display: block; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px;">
+                Không
+                có sản phẩm nào trong giỏ hàng, vui lòng tải lại trang
+            </p>
+
+            <a href="#" class="btn btn-default btn-sm"
+               id="backPD"
+               style="margin-top: 30px; font-size: 20px; background-image: linear-gradient(to bottom, #fff 0, #e0e0e0 100%); background-repeat: repeat-x; border-color: #ccc;">
+                Quay
+                về trang chủ
+            </a>
+        </div>
+
+        <div class="cart_inner" style="display: block;" id="shopingCartTable">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        @if (carts == null || carts.Count == 0)
+                        {
+                            <p class="text-info text-center">
+                                Giỏ hàng của bạn rỗng!
+                            </p>
+                        }
+                        else
+                        {
+
+                            foreach (Website_StorePhone3.Models.Entities.Cart c in carts)
+                            {
+                                <tr data-idProductDetail="@c.ProductDetail.id">
+                                    <td class="name"
+                                        data-idProduct="@c.ProductDetail.product.id"
+                                        data-nameProduct="@c.ProductDetail.product.name-@c.ProductDetail.color.name-@c.ProductDetail.spec.GotValue GB">
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                <img src="~/Content/client/img/product/@c.ProductDetail.imgUrl"
+                                                     alt="" width="60px" height="60px" />
+                                            </div>
+                                            <div class="media-body">
+                                                <p>@c.ProductDetail.product.name-@c.ProductDetail.color.name-@c.ProductDetail.spec.GotValue GB</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="price" data-price="@c.ProductDetail.AfterPrice">
+                                        <h5 class="priceItem">@c.ProductDetail.price</h5>
+                                    </td>
+                                    <td>
+                                        <div class="product_count">
+                                            <input class="quan-cart" type="number"
+                                                   name="qty"
+                                                   id="sst"
+                                                   max="3"
+                                                   min="1"
+                                                   value="@c.Quantity"
+                                                   title="Quantity:"
+                                                   class="input-text qty" />
+
+
+                                        </div>
+                                    </td>
+                                    <td colspan="3">
+                                        <h5 class="shoping__cart__total">@c.TotalPrice</h5>
+                                        @if (!c.ProductDetail.HasSale)
+                                        {
+                                            <p style="color: #007bff;">(Đã áp dụng voucher)</p>
+                                        }
+                                       
+                                    </td>
+                                    <td class="shoping__cart__item__close">
+
+                                        <button type="button" class="close icon_close" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+
+                    <tr class="bottom_button">
+                        <td>
+                            <a class="gray_btn" href="#">Update Cart</a>
+                        </td>
+                        <td></td>
+                        <td></td>
+                       
+                      
+                        <td>
+                            <div class="cupon_text">
+                                <form action="" method="post">
+                                    <h5>Voucher có thể được áp dụng</h5>
+
+                                    <select class="form-group" name="voucherId">
+                                        @foreach (Website_StorePhone3.Models.db.voucher v in vouchers)
+                                        {
+                                            <option value="@v.id">@v.name</option>
+                                        }
+
+
+                                    </select>
+
+                                    <button class="btn btn-submit" type="submit">Apply</button>
+                                </form>
+
+
+                            </div>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <h5>Tổng tiền</h5>
+                            </td>
+                            <td>
+                                <h5 id="totalmoney">$2160.00</h5>
+                            </td>
+                        </tr>
+                       
+                        <tr class="out_button_area">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class="checkout_btn_inner">
+                                    <a id="continuehop" class="gray_btn" href="@Url.Action("ProductDetail","ProductDetail",new {id = carts[carts.Count-1].ProductDetail.product.id })">Tiếp tục mua hàng</a>
+                                    <a class="main_btn" href="@Url.Action("Checkout","Checkout")">Tiến hành thanh toán</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="@Url.Content("~/Content/client/js/jquery-3.2.1.min.js")" language="javascript" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/client/js/numeral.min.js")" language="javascript" type="text/javascript"></script>
+<script>
+
+    ganTongTienGioHang();
+
+    function ganTongTienGioHang(isEventChange) {
+        var totalMoney = 0;
+
+
+        var idProduct = $(".price").closest("tr").attr("data-idProduct");
+
+
+        $(".price").each(
+            function () {
+                var price = $(this).attr("data-price");
+                var quan = $(this).closest("tr").find(".quan-cart")
+                    .val();
+                var money = parseInt(price) * quan;
+
+                totalMoney = totalMoney + money;
+
+                $("#totalmoney").html(totalMoney);
+                $('#totalmoney').each(
+                    function () {
+                        $(this).text(
+                            numeral($(this).text()).format(
+                                '0,0')
+                            + " VND");
+                    });
+
+            });
+
+    };
+
+    $(".icon_close")
+        .click(
+            function () {
+                var idProductDetail = $(this).closest("tr").attr(
+                    "data-idProductDetail");
+                var self = $(this);
+                $
+                    .ajax({
+                        url: "https://localhost:44306/RestCart/deleteItemInCart",
+                        data: {
+                            idPD: idProductDetail
+                        },
+                        type: "GET",
+                        success: function (res) {
+                            console.log(res);
+
+                            self.closest("tr").remove();
+                            ganTongTienGioHang(true);
+
+                            if (res.Message == "EMPTY") {
+                                var noItem = document
+                                    .getElementById("no-item");
+                                var shopingCartTable = document
+                                    .getElementById("shopingCartTable");
+                                var module = document
+                                    .getElementById("checkOut");
+
+                                noItem.style.display = "block";
+                                shopingCartTable.style.display = "none";
+
+                                module.style.display = "none";
+
+                                var backPD = document.getElementById("backPD");
+                                backPD.setAttribute("href", "https://localhost:44306/chitiet/ProductDetail/" + idProductDetail);
+
+
+                            }
+
+                        }
+                    });
+
+            })
+    $(".quan-cart")
+        .change(
+            function () {
+                console.log("change");
+                var quan = $(this).val();
+                console.log("quan" + quan);
+                var name = $(this).closest("tr").find(".name")
+                    .attr("data-nameProduct");
+
+                console.log("name " + name);
+                var price = $(this).closest("tr").find(".price")
+                    .attr("data-price");
+                console.log("price" + price);
+                var idProductDetail = $(this).closest("tr").attr(
+                    "data-idProductDetail");
+
+                console.log("PDId" + idProductDetail);
+
+
+                var c = quan * parseInt(price);
+                $(this).closest("tr").find(".shoping__cart__total")
+                    .html(c);
+
+                ganTongTienGioHang(true);
+
+                $('.shoping__cart__total').each(
+                    function () {
+                        $(this).text(
+                            numeral($(this).text()).format(
+                                '0,0')
+                            + " VND");
+                    });
+                $('#totalmoney').each(
+                    function () {
+                        $(this).text(
+                            numeral($(this).text()).format(
+                                '0,0')
+                            + " VND");
+                    });
+
+                //khi refresh trang thi no van giữ sl sp mà mình ms click
+                $.ajax({
+                    url: "https://localhost:44306/RestCart/updateCart",
+                    type: "GET",
+                    data: {
+                        idProductDetail: idProductDetail,
+                        quantity: quan,
+                        totalPrice: c
+                    },
+                    success: function (res) {
+                        console.log(res);
+                    }
+
+                });
+
+            });
+
+    $('.priceItem').each(function () {
+        $(this).text(numeral($(this).text()).format('0,0') + " VND");
+    });
+
+    $('.shoping__cart__total').each(function () {
+        $(this).text(numeral($(this).text()).format('0,0') + " VND");
+    });
+
+</script>
+<!--================End Cart Area =================-->

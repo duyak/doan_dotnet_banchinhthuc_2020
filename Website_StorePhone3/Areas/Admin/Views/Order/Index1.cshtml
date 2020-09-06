@@ -1,0 +1,279 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+@*@model IEnumerable<Website_StorePhone3.Models.db.order>*@
+<ul class="nav nav-list">
+    <li class="">
+        <a href="index.html">
+            <i class="menu-icon fa fa-tachometer"></i>
+            <span class="menu-text"> Trang Chủ </span>
+        </a>
+
+        <b class="arrow"></b>
+    </li>
+
+    <!--<li class="">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-desktop"></i>
+            <span class="menu-text">
+                Cấu hình Users
+            </span>
+
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+        <b class="arrow"></b>
+
+        <ul class="submenu">
+            <li class="">-->
+    @*  <a href="manage_user.html">
+            <i class="menu-icon fa fa-caret-right"></i>
+            Quản lí User
+        </a>*@
+    <!--@Html.ActionLink("Quản lý User", "manager_user", "HomeAdmin")
+        <b class="arrow"></b>
+    </li>
+
+    <li class="">
+        <a href="typography.html">
+            <i class="menu-icon fa fa-caret-right"></i>
+            Danh sách quyền
+        </a>
+
+        <b class="arrow"></b>
+    </li>
+
+    <li class="">-->
+    @* <a href="profile_users.html">
+            <i class="menu-icon fa fa-caret-right"></i>
+            Danh sách User
+        </a>*@
+    <!--@Html.ActionLink("Danh sách User", "profile_users", "HomeAdmin")
+        <b class="arrow"></b>
+    </li>
+    <li class="">-->
+    @* <a href="add_users.html">
+            <i class="menu-icon fa fa-caret-right"></i>
+            Thêm User
+        </a>*@
+    <!--@Html.ActionLink("Thêm User", "add_user", "HomeAdmin")
+                <b class="arrow"></b>
+            </li>
+
+
+
+
+        </ul>
+    </li>-->
+
+    <li class="">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-list"></i>
+            <span class="menu-text"> Quản Lý Danh Mục </span>
+
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+        <b class="arrow"></b>
+
+        <ul class="submenu">
+            <li class="">
+                @* <a href="manage_user.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Loại danh mục
+                    </a>*@
+                @Html.ActionLink("Loại danh mục", "Index", "Category")
+                <b class="arrow"></b>
+            </li>
+            <li class="">
+                @* <a href="add_supplier.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Thêm nhà sản xuất
+                    </a>*@
+                @Html.ActionLink("Thêm danh mục", "addCategory", "Category")
+                <b class="arrow"></b>
+            </li>
+
+        </ul>
+    </li>
+
+    <li class="active open">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-pencil-square-o"></i>
+            <span class="menu-text">Quản lý nhà sản xuất</span>
+
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+
+        <b class="arrow"></b>
+        <ul class="submenu">
+
+            <li class="">
+                @*   <a href="profile_supplier.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Thông tin nhà sản xuất
+                    </a>*@
+                @Html.ActionLink("Thông tin nhà sản xuất", "Index", "Brand")
+                <b class="arrow"></b>
+            </li>
+
+            <li class="active">
+                @* <a href="add_supplier.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Thêm nhà sản xuất
+                    </a>*@
+                @Html.ActionLink("Thêm nhà sản xuất", "addBrand", "Brand")
+                <b class="arrow"></b>
+            </li>
+
+        </ul>
+
+
+    </li>
+
+    <li class="">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-pencil-square-o"></i>
+            <span class="menu-text">Quản lý sản phẩm </span>
+
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+
+        <b class="arrow"></b>
+        <ul class="submenu">
+            <li class="">
+                @*  <a href="profile_product.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Danh sách sản phẩm
+                    </a>*@
+                @Html.ActionLink("Danh sách sản phẩm", "Index", "Product")
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                @* <a href="add_product.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Thêm sản phẩm
+                    </a>*@
+                @Html.ActionLink("Thêm sản phẩm", "add_Product", "HomeAdmin")
+                <b class="arrow"></b>
+            </li>
+            <!--<li class="">-->
+            @*<a href="manage_color.html">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    Danh sách màu sắc
+                </a>*@
+            <!--@Html.ActionLink("Danh sách màu sắc", "manager_color", "HomeAdmin")
+                <b class="arrow"></b>
+            </li>-->
+
+        </ul>
+
+
+    </li>
+
+    <li class="">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-calendar"></i>
+            <span class="menu-text">Quản lý đơn hàng </span>
+
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+
+        <b class="arrow"></b>
+        <ul class="submenu">
+            <li class="">
+                @*  <a href="manage_order.html">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Danh sách đơn hàng
+                    </a>*@
+                @Html.ActionLink("Danh sách đơn hàng", "VoucherList", "Voucher")
+                <b class="arrow"></b>
+            </li>
+
+
+        </ul>
+
+
+    </li>
+
+
+</ul><!-- /.nav-list -->
+
+
+<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+    <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+</div>
+        </div>
+
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="alert alert-info" id="alert-info" style="display:none"></div>
+                <div class="form-inline" style="text-align: right; padding: 10px">
+                    <div class="input-group">
+                        @Html.DropDownList("value", new SelectList(new List<object>
+                        {
+                            new { value = "1" , text = "Dang duyệt"  },
+                            new { value = "2" , text = "Đang giao" },
+                            new { value = "3" , text = "Đã giao" },
+                            new { value = "4" , text = "Hủy" },
+                        }, "value", "text"), "--Trạng thái--", new { @class = "form-control", id = "trangthai", onchange = "timkiemdh()" })
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="red">Ngày</i></span>
+                        <input id="dhday" type="date" class="form-control" onchange="timkiemdh()">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <input id="mobile" type="text" class="form-control" placeholder="Số điện thoại" oninput="timkiemdh()">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <input id="madh" type="text" class="form-control" placeholder="Mã đơn hàng" oninput="timkiemdh()">
+                    </div>
+
+
+                </div>
+                <div class="form-inline" style="text-align: right; padding: 10px">
+                    <div class="input-group">
+                        @Html.DropDownList("SetStatus", new SelectList(new List<object>
+                        {
+                            new { value = "1" , text = "Dang duyệt"  },
+                            new { value = "2" , text = "Đang giao" },
+                            new { value = "3" , text = "Đã giao" },
+                            new { value = "4" , text = "Hủy" },
+                        }, "value", "text"), "--- Sửa trạng thái đơn hàng ---", new { @class = "form-control", id = "setstatus" })
+                       @* <span class="input-group-addon" onclick="SetStatus('@Url.Action("MultibleUpdate", "Donhang")')" style="cursor:pointer"><i class="glyphicon glyphicon glyphicon-wrench blue"></i></span>*@
+                    </div>
+                </div>
+
+                <div class="Ajax-Table" id="Ajax-Table">
+                   @* @Html.Action("Search", "Order")*@
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->

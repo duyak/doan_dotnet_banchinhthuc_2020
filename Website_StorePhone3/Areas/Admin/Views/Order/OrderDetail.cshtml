@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+@model IQueryable<Website_StorePhone3.Models.db.orderdetail>
+
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="closeDialog();">×</button>
+                <h3> Chi tiết đơn hàng #@Model.First().orderId </h3>
+            </div>
+            <div class="modal-body">
+                <table class="table-hover table-bordered">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.First().productdetail.product.name)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().quanlity)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().price)</th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+        <tr>
+            <td>@item.productdetail.product.name</td>
+            <td>@item.quanlity</td>
+            <td>@string.Format("{0:0,0}", @item.price) </td>
+        </tr>}
+                </table>
+            </div>
+            @*<div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+

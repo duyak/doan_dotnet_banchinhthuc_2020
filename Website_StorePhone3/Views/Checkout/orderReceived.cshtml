@@ -1,0 +1,399 @@
+﻿
+@{
+    ViewBag.Title = "orderReceived";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<Website_StorePhone3.Models.Entities.OrderDetail> orderdetails  = ViewBag.orderDetail;
+    Website_StorePhone3.Models.Entities.Order order = ViewBag.order;
+}
+
+<style type="text/css">
+    body {
+        font-family: inherit;
+    }
+
+    #main-primary {
+        padding: 15px 0px;
+        background: #f0f0f0;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    #ex_page {
+        width: 100%;
+        display: block;
+        overflow: hidden;
+        background: #fff;
+    }
+
+    .ng_ctop {
+        padding-bottom: 15px;
+        display: block;
+        width: 100%;
+        overflow: hidden;
+    }
+
+        .ng_ctop a {
+            color: #e10c00;
+            overflow: hidden;
+            position: relative;
+            padding: 0px 0 0 15px;
+        }
+
+        .ng_ctop span {
+            float: right;
+        }
+
+    .woocommerce-order {
+        padding: 15px;
+        background: #fff;
+    }
+
+    .woocommerce ul.order_details {
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px dashed #d3ced2;
+        margin-bottom: 15px;
+    }
+
+        .woocommerce ul.order_details li {
+            border-right: 0px;
+            margin-right: 0px;
+            width: 100%;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px dashed #d3ced2;
+            list-style-type: none;
+        }
+
+    .woocommerce .woocommerce-order-details {
+        margin-bottom: 15px;
+    }
+
+    .woocommerce-order h2 {
+        font-size: 16px;
+    }
+
+    #ex_page .woocommerce table.shop_table {
+        margin-bottom: 0px;
+        font-size: 13px;
+    }
+
+    .woocommerce table.shop_table {
+        border: 1px solid rgba(0, 0, 0, .1);
+        margin: 0 -1px 24px 0;
+        text-align: left;
+        width: 100%;
+        border-collapse: separate;
+        border-radius: 5px;
+    }
+
+    thead {
+        display: table-header-group;
+        vertical-align: middle;
+        border-color: inherit;
+    }
+
+    tbody {
+        display: table-row-group;
+        vertical-align: middle;
+        border-color: inherit;
+    }
+
+    #ex_page .woocommerce table.shop_table th {
+        background: #f1f1f1;
+    }
+
+    #ex_page .woocommerce table.shop_table td {
+        background: #f1f1f1;
+    }
+
+    .woocommerce table.shop_table th {
+        font-weight: 700;
+        padding: 9px 12px;
+        line-height: 1.5em;
+    }
+
+    .woocommerce table.shop_table td {
+        border-top: 1px solid rgba(0, 0, 0, .1);
+        padding: 9px 12px;
+        vertical-align: middle;
+        line-height: 1.5em;
+    }
+
+    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+        margin-bottom: .5rem;
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.2;
+        color: inherit;
+    }
+</style>
+
+<body>
+    <section id="main-primary">
+        <div class="container">
+            <div class="row">
+                <div id="ex_page">
+                    <div class="ex_cnpost">
+                        <div class="ng_ctop">
+                            <a href="@Url.Action("list","shop")">Mua thêm sản phẩm khác</a><span>
+                                Giỏ
+                                hàng của bạn
+                            </span>
+                        </div>
+                        <div class="ng_news">
+                            <div class="woocommerce">
+                                <div class="woocommerce-order">
+
+
+
+                                    <p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received">
+                                        Cảm
+                                        ơn bạn. Đơn hàng của bạn đã được nhận.
+                                    </p>
+
+                                    <ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
+
+                                        <li class="woocommerce-order-overview__order order">
+                                            Mã
+                                            đơn hàng: <strong>@order.id</strong>
+                                        </li>
+
+                                        <li class="woocommerce-order-overview__date date">
+                                            Ngày: <strong>@order.createDate</strong>
+                                        </li>
+
+
+                                        <li class="woocommerce-order-overview__total total">
+                                            Tổng
+                                            cộng: <strong>
+                                                <span class="woocommerce-Price-amount amount price">@order.amount</span>
+                                            </strong>
+                                        </li>
+
+                                        <li class="woocommerce-order-overview__payment-method method">
+                                            Phương thức thanh toán:
+                                            @if (order.payment == 2)
+                                            {
+                                                <strong>
+                                                    Chuyển khoản
+                                                </strong>
+                                            }
+                                            else
+                                            {
+                                                <strong>
+                                                    Thanh toán khi nhận hàng
+                                                </strong>
+                                            }
+
+
+
+                                        </li>
+
+                                    </ul>
+
+                                   @if (order.payment == 2) {
+
+                                        <table style="border: 1px solid #ddd; border-collapse: collapse; width: 100%; margin-bottom: 15px">
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="4"
+                                                        style="border: 1px solid rgba(0, 0, 0, .1); padding: 6px 10px; background: #f1f1f1;">
+                                                        <h2 class="woocommerce-order-details__title">
+                                                            Thông
+                                                            tin chuyển khoản
+                                                        </h2> <span>
+                                                            - Nội dung chuyển khoản: <span style="color: #C1272D">Họ Tên + Mã đơn hàng</span> -Đơn
+                                                            hàng sẽ được giao khi chúng tôi nhận được chuyển khoản-
+                                                             Trân trọng cảm ơn vì đã tin tưởng chúng tôi
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 120px; border: 1px solid rgba(0, 0, 0, .1); padding: 10px 10px;">
+                                                        <img style="height: 100px"
+                                                             src="https://pp9hmd4d19.vcdn.com.vn/techcombank-logo.png"
+                                                             alt="">
+                                                    </td>
+                                                    <td style="border: 1px solid rgba(0, 0, 0, .1); padding: 6px 5px;">
+                                                        <strong>STK:</strong> 19030684354555<br> <strong>
+                                                            Chủ
+                                                            tài khoản:
+                                                        </strong> Nguyễn Hoàng Long<br> <strong>
+                                                            Chi
+                                                            Nhánh:
+                                                        </strong> Techcombank - Chi nhánh: Tây Sài Gòn
+                                                    </td>
+                                                    <td style="width: 120px; border: 1px solid rgba(0, 0, 0, .1); padding: 10px 10px;">
+                                                        <img style="height: 100px"
+                                                             src="https://pp9hmd4d19.vcdn.com.vn/Agribank-logo.png"
+                                                             alt="">
+                                                    </td>
+                                                    <td style="border: 1px solid rgba(0, 0, 0, .1); padding: 6px 5px;">
+                                                        <strong>STK:</strong> 2003206177228<br> <strong>
+                                                            Chủ
+                                                            tài khoản:
+                                                        </strong> Nguyễn Hoàng Long<br> <strong>
+                                                            Chi
+                                                            Nhánh:
+                                                        </strong> Agribank - Chi nhánh: Tây Sài Gòn
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 120px; border: 1px solid rgba(0, 0, 0, .1); padding: 10px 10px;">
+                                                        <img style="height: 100px"
+                                                             src="https://pp9hmd4d19.vcdn.com.vn/BIDV-logo.png" alt="">
+                                                    </td>
+                                                    <td style="border: 1px solid rgba(0, 0, 0, .1); padding: 6px 5px;">
+                                                        <strong>STK:</strong> 56510000064669<br> <strong>
+                                                            Chủ
+                                                            tài khoản:
+                                                        </strong> Lê Anh Minh<br> <strong>
+                                                            Chi
+                                                            Nhánh:
+                                                        </strong> BIDV - Chi nhánh: Dĩ An,Bình Dương
+                                                    </td>
+                                                    <td style="width: 120px; border: 1px solid rgba(0, 0, 0, .1); padding: 10px 10px;">
+                                                        <img style="height: 100px"
+                                                             src="https://pp9hmd4d19.vcdn.com.vn/vietcombank-logo.png"
+                                                             alt="">
+                                                    </td>
+                                                    <td style="border: 1px solid rgba(0, 0, 0, .1); padding: 6px 5px;">
+                                                        <strong>STK:</strong> 0041000277232<br> <strong>
+                                                            Chủ
+                                                            tài khoản:
+                                                        </strong> Lê Anh Minh<br> <strong>
+                                                            Chi
+                                                            Nhánh:
+                                                        </strong> Vietcombank - Chi nhánh: Dĩ An,Bình Dương
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                   }
+                                    <section class="woocommerce-order-details"
+                                             style="margin-top: 20px; padding-bottom: 20px;">
+
+                                        <h2 class="woocommerce-order-details__title"
+                                            style="font-size: 20px;">
+                                            Chi tiết đơn hàng
+                                        </h2>
+
+                                        <table class="woocommerce-table woocommerce-table--order-details shop_table order_details">
+
+                                            <thead>
+                                                <tr>
+                                                    <th class="woocommerce-table__product-name product-name">
+                                                        Sản
+                                                        phẩm
+                                                    </th>
+                                                    <th class="woocommerce-table__product-table product-total">Tổng</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                @foreach (Website_StorePhone3.Models.Entities.OrderDetail od in orderdetails)
+                                                {
+                                                    <tr class="woocommerce-table__line-item order_item">
+
+                                                        <td class="woocommerce-table__product-name product-name">
+
+                                                            
+                                                            @if(od.productdetail.spec.GotValue != null){
+                                                                <a href="#">
+                                                                    @od.productdetail.product.name-
+                                                                    @od.productdetail.color.name-
+                                                                    @od.productdetail.spec.GotValue GB
+                                                                </a>
+                                                            }
+                                                            else
+                                                            {
+                                                            <a href="#">
+                                                                @od.productdetail.product.name-
+                                                                @od.productdetail.color.name
+                                                            </a>
+                                                            }
+
+                                                           <strong class="product-quantity">
+                                                                ×
+                                                                @od.quanlity
+                                                            </strong>
+                                                            <ul class="wc-item-meta">
+                                                                <li style="list-style-type: none;">
+                                                                    <strong class="wc-item-meta-label">Màu sắc:</strong>
+                                                                    <p>@od.productdetail.color.name</p>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+
+                                                        <td class="woocommerce-table__product-total product-total">
+                                                            <span class="woocommerce-Price-amount amount price">@od.price</span>
+                                                        </td>
+
+                                                    </tr>
+
+                                                }
+
+
+
+                                            </tbody>
+
+                                            <tfoot>
+
+                                                <tr>
+                                                    <th scope="row">Phương thức thanh toán:</th>
+
+                                                   
+                                                        @if (order.payment == 2)
+                                                        {
+                                                            <td class=" ">Chuyển khoản</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td class=" ">Thanh toán khi nhận hàng</td>
+                                                        }
+                                                        
+                                                   
+
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Tổng cộng:</th>
+                                                    <td>
+                                                        <span class="woocommerce-Price-amount amount price">@order.amount</span>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </section>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+<script src="@Url.Content("~/Content/client/js/jquery-3.2.1.min.js")" language="javascript" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/client/js/numeral.min.js")" language="javascript" type="text/javascript"></script>
+<script type="text/javascript">
+    $('.price').each(function () {
+        $(this).text(numeral($(this).text()).format('0,0') + " VND");
+    });
+</script>
+
+

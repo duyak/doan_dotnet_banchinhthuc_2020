@@ -1,0 +1,658 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<Website_StorePhone3.Models.db.product> products = ViewBag.ListPro;
+    double tongsopage = ViewBag.tongsopage;
+}
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>*@
+<input id="pageall" type="hidden" value="@tongsopage">
+<!--================Home Banner Area =================-->
+<h3>Welcome: @(Request.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "")  user</h3>
+<section class="home_banner_area mb-40">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content row">
+                <div class="col-lg-12">
+                    <p class="sub text-uppercase">Điện thoại thông minh</p>
+                    <h3><span>Mang</span> Điện Thoại <br />Đến <span>Tầm Tay Bạn</span></h3>
+                    <a class="main_btn mt-40" href="#">Xem Danh sách điện thoại</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+<!-- Start feature Area -->
+<section class="feature-area section_gap_bottom_custom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <a href="#" class="title">
+                        <i class="flaticon-money"></i>
+                        <h3>Money back gurantee</h3>
+                    </a>
+                    <p>Shall open divide a one</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <a href="#" class="title">
+                        <i class="flaticon-truck"></i>
+                        <h3>Free Delivery</h3>
+                    </a>
+                    <p>Shall open divide a one</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <a href="#" class="title">
+                        <i class="flaticon-support"></i>
+                        <h3>Alway support</h3>
+                    </a>
+                    <p>Shall open divide a one</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="single-feature">
+                    <a href="#" class="title">
+                        <i class="flaticon-blockchain"></i>
+                        <h3>Secure payment</h3>
+                    </a>
+                    <p>Shall open divide a one</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End feature Area -->
+<!--================ Feature Product Area =================-->
+<section class="feature_product_area section_gap_bottom_custom">
+    <div class="container">
+        <!--<div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="main_title">
+                    <h2><span>Sản phẩm mới</span></h2>-->
+        <!--                    <p>Bring called seed first of third give itself now ment</p>-->
+        <!--</div>
+            </div>
+        </div>-->
+        <!--<div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="single-product">
+                    <div class="product-img">
+                        <img src="~/Content/client/img/phone/image/samsung-galaxy-a21s-055620-045659-400x400-dathu.jpg" height="266" width="266" />-->
+        <!--                                                <img src="img/phone/image/oppo-a92-white-400-400x460-thugon.png"-->
+        <!--                                                  height="266" width="231"/>-->
+        <!--                        <img class="img-fluid w-100" src="img/phone/image/oppo-a92-white-400-400x460.png"/>-->
+        <!--<div class="p_icon">
+                        <a href="#">
+                            <i class="ti-eye"></i>
+                        </a>
+                        <a href="#">
+                            <i class="ti-heart"></i>
+                        </a>
+                        <a href="#">
+                            <i class="ti-shopping-cart"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="product-btm">
+                    <a href="#" class="d-block">
+                        <h4>Samsung Galaxy A21s</h4>
+                    </a>
+                    <div class="mt-3">
+                        <span class="mr-4">$25.00</span>
+                        <del>$35.00</del>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="single-product">
+                <div class="product-img">
+                    <img src="~/Content/client/img/phone/image/iphone-11-red-400x400dathu.jpg" height="266" width="266" />
+                    <div class="p_icon">
+                        <a href="#">
+                            <i class="ti-eye"></i>
+                        </a>
+                        <a href="#">
+                            <i class="ti-heart"></i>
+                        </a>
+                        <a href="#">
+                            <i class="ti-shopping-cart"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="product-btm">
+                    <a href="#" class="d-block">
+                        <h4>IPhone 11 64GB</h4>
+                    </a>
+                    <div class="mt-3">
+                        <span class="mr-4">$25.00</span>
+                        <del>$35.00</del>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="single-product">
+                <div class="product-img">-->
+        <!--                        <img class="img-fluid w-100" src="img/phone/image/xiaomi-redmi-9-114620-094644-400x400.jpg"/>-->
+        <!--<img src="~/Content/client/img/phone/image/xiaomi-redmi-9-114620-094644-400x400-dathu.jpg" height="266"
+                             width="266" />
+                        <div class="p_icon">
+                            <a href="#">
+                                <i class="ti-eye"></i>
+                            </a>
+                            <a href="#">
+                                <i class="ti-heart"></i>
+                            </a>
+                            <a href="#">
+                                <i class="ti-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-btm">
+                        <a href="#" class="d-block">
+                            <h4>OPPO <A92></A92></h4>
+                        </a>
+                        <div class="mt-3">
+                            <span class="mr-4">$25.00</span>
+                            <del>$35.00</del>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</section>
+<!--================ End Feature Product Area =================-->
+<!--================ Offer Area =================-->
+<section class="offer_area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="offset-lg-4 col-lg-6 text-center">
+                <div class="offer_content">
+                    <h3 class="text-uppercase mb-40">all men’s collection</h3>
+                    <h2 class="text-uppercase">50% off</h2>
+                    <a href="#" class="main_btn mb-20 mt-5">Discover Now</a>
+                    <p>Limited Time Offer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================ End Offer Area =================-->
+<!--================ New Product Area =================-->
+<section class="new_product_area section_gap_top section_gap_bottom_custom">
+    <!--<div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="main_title">
+                    <h2><span>Sản phẩm khuyến mại</span></h2>-->
+    <!--                    <p>Bring called seed first of third give itself now ment</p>-->
+    <!--</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 col-md-6">
+            <div class="single-product">
+                <div class="product-img">
+                    <img src="~/Content/client/img/phone/image/samsung-galaxy-a21s-055620-045659-400x400-dathu.jpg" height="266" width="266" />-->
+    <!--                                                <img src="img/phone/image/oppo-a92-white-400-400x460-thugon.png"-->
+    <!--                                                  height="266" width="231"/>-->
+    <!--                        <img class="img-fluid w-100" src="img/phone/image/oppo-a92-white-400-400x460.png"/>-->
+    <!--<div class="p_icon">
+                    <a href="#">
+                        <i class="ti-eye"></i>
+                    </a>
+                    <a href="#">
+                        <i class="ti-heart"></i>
+                    </a>
+                    <a href="#">
+                        <i class="ti-shopping-cart"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="product-btm">
+                <a href="#" class="d-block">
+                    <h4>Samsung Galaxy A21s</h4>
+                </a>
+                <div class="mt-3">
+                    <span class="mr-4">$25.00</span>
+                    <del>$35.00</del>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="single-product">
+            <div class="product-img">
+                <img src="~/Content/client/img/phone/image/samsung-galaxy-a21s-055620-045659-400x400-dathu.jpg" height="266" width="266" />-->
+    <!--                                                <img src="img/phone/image/oppo-a92-white-400-400x460-thugon.png"-->
+    <!--                                                  height="266" width="231"/>-->
+    <!--                        <img class="img-fluid w-100" src="img/phone/image/oppo-a92-white-400-400x460.png"/>-->
+    <!--<div class="p_icon">
+                    <a href="#">
+                        <i class="ti-eye"></i>
+                    </a>
+                    <a href="#">
+                        <i class="ti-heart"></i>
+                    </a>
+                    <a href="#">
+                        <i class="ti-shopping-cart"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="product-btm">
+                <a href="#" class="d-block">
+                    <h4>Samsung Galaxy A21s</h4>
+                </a>
+                <div class="mt-3">
+                    <span class="mr-4">$25.00</span>
+                    <del>$35.00</del>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="single-product">
+            <div class="product-img">
+                <img src="~/Content/client/img/phone/image/samsung-galaxy-a21s-055620-045659-400x400-dathu.jpg" height="266" width="266" />-->
+    <!--                                                <img src="img/phone/image/oppo-a92-white-400-400x460-thugon.png"-->
+    <!--                                                  height="266" width="231"/>-->
+    <!--                        <img class="img-fluid w-100" src="img/phone/image/oppo-a92-white-400-400x460.png"/>-->
+    <!--<div class="p_icon">
+                    <a href="#">
+                        <i class="ti-eye"></i>
+                    </a>
+                    <a href="#">
+                        <i class="ti-heart"></i>
+                    </a>
+                    <a href="#">
+                        <i class="ti-shopping-cart"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="product-btm">
+                <a href="#" class="d-block">
+                    <h4>Samsung Galaxy A21s</h4>
+                </a>
+                <div class="mt-3">
+                    <span class="mr-4">$25.00</span>
+                    <del>$35.00</del>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="single-product">
+            <div class="product-img">
+                <img src="~/Content/client/img/phone/image/samsung-galaxy-a21s-055620-045659-400x400-dathu.jpg" height="266" width="266" />-->
+    <!--                                                <img src="img/phone/image/oppo-a92-white-400-400x460-thugon.png"-->
+    <!--                                                  height="266" width="231"/>-->
+    <!--                        <img class="img-fluid w-100" src="img/phone/image/oppo-a92-white-400-400x460.png"/>-->
+    <!--<div class="p_icon">
+                    <a href="#">
+                        <i class="ti-eye"></i>
+                    </a>
+                    <a href="#">
+                        <i class="ti-heart"></i>
+                    </a>
+                    <a href="#">
+                        <i class="ti-shopping-cart"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="product-btm">
+                <a href="#" class="d-block">
+                    <h4>Samsung Galaxy A21s</h4>
+                </a>
+                <div class="mt-3">
+                    <span class="mr-4">$25.00</span>
+                    <del>$35.00</del>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="single-product">
+            <div class="product-img">
+                <img src="~/Content/client/img/phone/image/samsung-galaxy-a21s-055620-045659-400x400-dathu.jpg" height="266" width="266" />-->
+    <!--                                                <img src="img/phone/image/oppo-a92-white-400-400x460-thugon.png"-->
+    <!--                                                  height="266" width="231"/>-->
+    <!--                        <img class="img-fluid w-100" src="img/phone/image/oppo-a92-white-400-400x460.png"/>-->
+    <!--<div class="p_icon">
+                    <a href="#">
+                        <i class="ti-eye"></i>
+                    </a>
+                    <a href="#">
+                        <i class="ti-heart"></i>
+                    </a>
+                    <a href="#">
+                        <i class="ti-shopping-cart"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="product-btm">
+                <a href="#" class="d-block">
+                    <h4>Samsung Galaxy A21s</h4>
+                </a>
+                <div class="mt-3">
+                    <span class="mr-4">$25.00</span>
+                    <del>$35.00</del>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="single-product">
+            <div class="product-img">
+                <img src="~/Content/client/img/phone/image/samsung-galaxy-a21s-055620-045659-400x400-dathu.jpg" height="266" width="266" />-->
+    <!--                                                <img src="img/phone/image/oppo-a92-white-400-400x460-thugon.png"-->
+    <!--                                                  height="266" width="231"/>-->
+    <!--                        <img class="img-fluid w-100" src="img/phone/image/oppo-a92-white-400-400x460.png"/>-->
+    <!--<div class="p_icon">
+                            <a href="#">
+                                <i class="ti-eye"></i>
+                            </a>
+                            <a href="#">
+                                <i class="ti-heart"></i>
+                            </a>
+                            <a href="#">
+                                <i class="ti-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-btm">
+                        <a href="#" class="d-block">
+                            <h4>Samsung Galaxy A21s</h4>
+                        </a>
+                        <div class="mt-3">
+                            <span class="mr-4">$25.00</span>
+                            <del>$35.00</del>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>-->
+</section>
+<!--================ End New Product Area =================-->
+<!--================ Inspired Product Area =================-->
+<section class="inspired_product_area section_gap_bottom_custom phantrang">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="main_title">
+                    <h2><span>Danh sách sản phẩm</span></h2>
+                    <!--                    <p>Bring called seed first of third give itself now ment</p>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="table-sanpham">
+
+            @foreach (Website_StorePhone3.Models.db.product pro in products)
+            {
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <div class="product-img">
+                            <img src="~/Content/client/img/product/@pro.imgMain" height="266" width="266" />
+
+
+                            <div class="p_icon">
+                                <a href="@Url.Action("ProductDetail","ProductDetail",new {id = pro.id })">
+                                    <i class="ti-eye"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="ti-heart"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="ti-shopping-cart"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product-btm">
+                            <a href="#" class="d-block">
+                                <h4>@pro.name</h4>
+                            </a>
+                            <div class="mt-3">
+                                <span class="mr-4 tien">@pro.code</span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+
+
+
+
+
+        </div>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                @for (int i = 1; i <= @tongsopage; i++)
+                {
+                    if (i == 1)
+                    {
+
+                        <li class="page-item"><a class="page-link active " href="#">@i</a></li>
+
+
+                    }
+                    else
+                    {
+
+                        <li class="page-item"><a class="page-link  " href="#">@i</a></li>
+
+
+                    }
+                }
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</section>
+<!--================ End Inspired Product Area =================-->
+<!--================ Start Blog Area =================-->
+<section class="blog-area section-gap">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="main_title">
+                    <h2><span>Blog mới nhất</span></h2>
+                    <!--                    <p>Bring called seed first of third give itself now ment</p>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="single-blog">
+                    <div class="thumb">
+                        <img class="img-fluid" src="~/Content/client/img/phone/image/iphone-11-red-400x400dathu.jpg" alt="">
+                    </div>
+                    <div class="short_details">
+                        <div class="meta-top d-flex">
+                            <a href="#">Đăng bởi Admin</a>
+                            <a href="#"><i class="ti-comments-smiley"></i>2 Bình luận</a>
+                        </div>
+                        <a class="d-block" href="single-blog.html">
+                            <h4>
+                                Ford clever bed stops your sleeping
+                                partner hogging the whole
+                            </h4>
+                        </a>
+                        <div class="text-wrap">
+                            <p>
+                                Let one fifth i bring fly to divided face for bearing the divide unto seed winged
+                                divided light
+                                Forth.
+                            </p>
+                        </div>
+                        <a href="#" class="blog_btn">Learn More <span class="ml-2 ti-arrow-right"></span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="single-blog">
+                    <div class="thumb">
+                        <img class="img-fluid" src="~/Content/client/img/phone/image/samsung-galaxy-a21s-055620-045659-400x400-dathu.jpg" alt="">
+                    </div>
+                    <div class="short_details">
+                        <div class="meta-top d-flex">
+                            <a href="#">Đăng bỏi Admin</a>
+                            <a href="#"><i class="ti-comments-smiley"></i>2 Bình luận</a>
+                        </div>
+                        <a class="d-block" href="single-blog.html">
+                            <h4>
+                                Ford clever bed stops your sleeping
+                                partner hogging the whole
+                            </h4>
+                        </a>
+                        <div class="text-wrap">
+                            <p>
+                                Let one fifth i bring fly to divided face for bearing the divide unto seed winged
+                                divided light
+                                Forth.
+                            </p>
+                        </div>
+                        <a href="#" class="blog_btn">Learn More <span class="ml-2 ti-arrow-right"></span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="single-blog">
+                    <div class="thumb">
+                        <img class="img-fluid" src="~/Content/client/img/phone/image/xiaomi-redmi-9-114620-094644-400x400-dathu.jpg" alt="">
+                    </div>
+                    <div class="short_details">
+                        <div class="meta-top d-flex">
+                            <a href="#">Đăng bởi Admin</a>
+                            <a href="#"><i class="ti-comments-smiley"></i>2 Bình luận</a>
+                        </div>
+                        <a class="d-block" href="single-blog.html">
+                            <h4>
+                                Ford clever bed stops your sleeping
+                                partner hogging the whole
+                            </h4>
+                        </a>
+                        <div class="text-wrap">
+                            <p>
+                                Let one fifth i bring fly to divided face for bearing the divide unto seed winged
+                                divided light
+                                Forth.
+                            </p>
+                        </div>
+                        <a href="#" class="blog_btn">Learn More <span class="ml-2 ti-arrow-right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="@Url.Content("~/Content/client/js/jquery-3.2.1.min.js")" language="javascript" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/client/js/numeral.min.js")" language="javascript" type="text/javascript"></script>
+
+<script>
+    var allpage = document.getElementById("pageall");
+    $('.tien').each(function () {
+        $(this).text(numeral($(this).text()).format('0,0') + " VND");
+    });
+    $(document).ready(function () {
+        console.log(allpage.value);
+        $(".page-item").click(function () {
+            $(".page-item").removeClass("active");
+            $(this).addClass("active");
+            var sotrang = $(this).text();
+            console.log(sotrang);
+            var abc = parseInt(sotrang);
+
+            var limit = (abc - 1) * 3;
+            console.log(limit);
+            $.ajax({
+                url: "https://localhost:44306/RestProduct/listProductPagging",
+                type: "GET",
+                data: {
+                    limit: limit,
+
+                },
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+
+
+
+                success: function (value) {
+                    console.log(value);
+                    var tbodysanpham = $("#table-sanpham");
+                    tbodysanpham.empty();
+                    for (var i = 0; i < value.length; i++) {
+
+                        tbodysanpham.append("<div class=\"col-lg-3 col-md-6\"><div class=\"single-product\">" +
+                            "                   <div class=\"product-img\">" +
+                            "                   <img height=" + 266 + " width=" + 266 + " src =\"https://localhost:44306/Content/client/img/product/" + value[i].imgMain + "\">" +
+                            "                   <div class=\"p_icon\">" +
+                            "                   <a href =\"https://localhost:44306/chitiet/ProductDetail/" + value[i].id + "\">" +
+                            "                   <i class=\"ti-eye\"></i></a> " +
+                            "                   <a href =\"#\"><i class=\"ti-heart\"></i></a>" +
+                            "                   <a href =\"#\"><i class=\"ti-shopping-cart\"></i></a></div >" +
+                            "                   </div> " +
+                            "                   <div class=\"product-btm\"><a href = \"#\" class=\"d-block\"><h4>" + value[i].name + "</h4></a> " +
+                            "                   <div class=\"mt-3\"><span class=\"mr-4 tien\"> " + formatNumber(value[i].code, ',', '.') + "</span ></div> " +
+
+                            "                   </div>" +
+                            "                   </div></div>");
+
+                    }
+
+
+
+
+
+
+
+
+
+
+                }
+            })
+        })
+
+    })
+
+</script>
+
+
+
+
+
+
+<!--================ End Blog Area =================-->
+<!--================ start footer Area  =================-->
+>
+<!--================ End footer Area  =================-->

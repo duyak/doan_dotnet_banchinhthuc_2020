@@ -1,0 +1,281 @@
+﻿
+@{
+    ViewBag.Title = "profile_supplier";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="index.html">Trang chủ</a>
+                </li>
+
+                <li>
+                    <a href="index.html">Quản lí nhà cung cấp</a>
+                </li>
+                <li class="active">Thông tin nhà cung cấp</li>
+            </ul><!-- /.breadcrumb -->
+
+            <div class="nav-search" id="nav-search">
+                <form class="form-search">
+                    <span class="input-icon">
+                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                    </span>
+                </form>
+            </div><!-- /.nav-search -->
+        </div>
+
+        <div class="page-content">
+
+
+            <div class="page-header">
+                <h1>
+                    Nhà sản xuất
+                    <small>
+                        <i class="ace-icon fa fa-angle-double-right"></i>
+                        Thông tin các nhà sản xuất
+                    </small>
+                </h1>
+            </div><!-- /.page-header -->
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <!-- div.table-responsive -->
+                            <!-- div.dataTables_borderWrap -->
+                            <div>
+                                <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="center">
+                                                <label class="pos-rel">
+                                                    <input type="checkbox" class="ace" />
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            </th>
+                                            <th>Id</th>
+                                            <th>Tên nhà sản xuất</th>
+
+                                            <th>
+                                                <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+                                                Hiện thị
+                                            </th>
+
+
+                                            <th>Tác vụ</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <!--                                        Dòng thứ nhất-->
+                                        <tr>
+                                            <td class="center">
+                                                <label class="pos-rel">
+                                                    <input type="checkbox" class="ace" />
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            </td>
+
+
+                                            <td>NCC01</td>
+                                            <td class="hidden-480">Apple</td>
+                                            <!--                                            <td>Thành viên</td>-->
+
+                                            <td class="hidden-480">
+                                                <div class="col-xs-3">
+                                                    <label>
+                                                        <input name="switch-field-1" class="ace ace-switch" type="checkbox" />
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="hidden-sm hidden-xs action-buttons">
+
+                                                    <a class="green" href="edit_supplier.html">
+                                                        <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                                    </a>
+
+                                                    <a class="red" href="#" onclick="messFuntion()">
+                                                        <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                                        <script>
+                                                            function messFuntion(){
+                                                                confirm("Bạn có muốn xóa !")
+                                                            }
+                                                        </script>
+                                                    </a>
+                                                </div>
+
+
+                                            </td>
+                                        </tr>
+
+                                        <!--                                        Dòng thứ 2-->
+                                        <tr>
+                                            <td class="center">
+                                                <label class="pos-rel">
+                                                    <input type="checkbox" class="ace" />
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            </td>
+
+
+                                            <td>NCC02</td>
+                                            <td class="hidden-480">Samsung</td>
+                                            <!--                                            <td>Nhân viên</td>-->
+
+                                            <td class="hidden-480">
+                                                <div class="col-xs-3">
+                                                    <label>
+                                                        <input name="switch-field-1" class="ace ace-switch" type="checkbox" />
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="hidden-sm hidden-xs action-buttons">
+
+                                                    <a class="green" href="edit_supplier.html">
+                                                        <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                                    </a>
+
+                                                    <a class="red" href="#" onclick="messFuntion2()">
+                                                        <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                                        <script>
+                                                            function messFuntion2(){
+                                                                confirm("Bạn có muốn xóa !")
+                                                            }
+                                                        </script>
+                                                    </a>
+                                                </div>
+
+                                                <div class="hidden-md hidden-lg">
+                                                    <div class="inline pos-rel">
+                                                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                            <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                                        </button>
+
+                                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                            <li>
+                                                                <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                                                    <span class="blue">
+                                                                        <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href="edit_supplier.html" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                                    <span class="green">
+                                                                        <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                    <span class="red">
+                                                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!--                                        Dòng thứ 3-->
+                                        <tr>
+                                            <td class="center">
+                                                <label class="pos-rel">
+                                                    <input type="checkbox" class="ace" />
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            </td>
+
+
+                                            <td>NCC03</td>
+                                            <td class="hidden-480">Huawei</td>
+                                            <!--                                            <td>Thành viên</td>-->
+
+                                            <td class="hidden-480">
+                                                <div class="col-xs-3">
+                                                    <label>
+                                                        <input name="switch-field-1" class="ace ace-switch" type="checkbox" />
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="hidden-sm hidden-xs action-buttons">
+
+                                                    <a class="green" href="edit_supplier.html">
+                                                        <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                                    </a>
+
+                                                    <a class="red" href="#" onclick="messFuntion3()">
+                                                        <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                                        <script>
+                                                            function messFuntion3(){
+                                                                confirm("Bạn có muốn xóa !")
+                                                            }
+                                                        </script>
+                                                    </a>
+                                                </div>
+
+                                                <div class="hidden-md hidden-lg">
+                                                    <div class="inline pos-rel">
+                                                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                            <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                                        </button>
+
+                                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+
+
+                                                            <li>
+                                                                <a href="edit_supplier.html" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                                    <span class="green">
+                                                                        <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                    <span class="red">
+                                                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div>
+</div><!-- /.main-content -->

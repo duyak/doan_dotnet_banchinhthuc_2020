@@ -1,0 +1,843 @@
+﻿
+@{
+    ViewBag.Title = "SingleProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Website_StorePhone3.Models.db.product pro = ViewBag.product;
+    List<Website_StorePhone3.Models.db.productdetail> productdetails = ViewBag.productdetails;
+   
+    List<Website_StorePhone3.Models.db.voucher> vouchers = ViewBag.listVoucher;
+
+    int index = 0;
+    int firstPDId = ViewBag.firstPDId;
+   
+
+
+    var baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<input id="firstPDId" type="hidden" value="@firstPDId">
+<input id="productId" type="hidden" value="@pro.id">
+
+
+<!--================Home Banner Area =================-->
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content d-md-flex justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <h2>Chi tiết sản phẩm</h2>
+                    <!--                    <p>Very us move be blessed multiply night</p>-->
+                </div>
+                <div class="page_link">
+                    <a href="index.html">Trang chủ</a>
+                    <a href="single-product.html">Chi tiết sản phẩm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+<!--================Single Product Area =================-->
+<div class="product_image_area">
+    <div class="container">
+        <div class="row s_product_inner">
+            <div class="col-lg-5">
+                <div class="s_product_img">
+                    <div id="carouselExampleIndicators"
+                         class="carousel slide"
+                         data-ride="carousel">
+                        <ol class="carousel-indicators">
+
+                            @foreach (Website_StorePhone3.Models.db.productdetail pd in productdetails)
+                            {
+                                <li data-target="#carouselExampleIndicators"
+                                    data-slide-to="1">
+                                    <img src="~/Content/client/img/product/@pd.imgUrl"
+                                         alt="" width="60px" height="60px" />
+                                </li>
+                            }
+
+
+
+                        </ol>
+                        <div class="carousel-inner">
+
+
+
+                            <div class="carousel-itemdf active">
+                                <img id="img_main" class="d-block w-100"
+                                     src=""
+                                     alt="First slide" />
+                            </div>
+
+
+
+                            @for (int i = 0; i < productdetails.Count; i++)
+                            {
+
+
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" width="100px" height="150px"
+                                         src="~/Content/client/img/product/@productdetails[i].imgUrl"
+                                         alt="Second slide" />
+                                </div>
+
+
+                            }
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+
+                <h3>@pro.name</h3>
+                <div class="product__details__rating" style="margin-top: 15px;">
+                    <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <span>(18 reviews)</span>
+                </div>
+                <div id="price" class="priceee" style="margin-top: 15px;margin-bottom: 10px;"></div>
+
+                
+
+                <div>
+                    <aside class="promotion_wrapper"
+                           style="display: block; border: #e11b1e solid 1px; border-radius: 4px; padding: 10px 0 0; position: relative; overflow: visible; margin: 20px 0; float: left; width: 100%;">
+                        <b id="promotion_header"
+                           style="background: #e11b1e; border-radius: 13px; color: #fff; font-size: 14px; font-weight: 400; position: absolute; top: -13px; left: 10px; vertical-align: middle; line-height: 26px; clear: both; padding: 0 15px; text-transform: uppercase;">
+                            <i class="fa fa-gift" aria-hidden="true"
+                               style="display: inline-block; font: normal normal normal 14px/1 FontAwesome; font-size: inherit; text-rendering: auto; -webkit-font-smoothing: antialiased;"></i>
+                            Khuyến mãi
+                        </b>
+
+                        <div class="khuyenmai-info" style="padding: 10px 10px 0;">
+                            <!-- CTKM chung -->
+                            <div class="kmChung" style="font-size: 15px; font-weight: 700;">
+
+                                <h4 style="font-size: 13px; font-weight: 700; margin: 0 0 5px; line-height: 1.35; color: #0a263c;">
+                                    Chương
+                                    trình khuyến mại:
+                                </h4>
+
+                                <div class="pack-detail"
+                                     style="margin-top: 5px; position: relative; display: block;">
+                                    <ul class="el-promotion-pack"
+                                        style="margin-bottom: 0px; padding: 0 15px; list-style: none;">
+
+                                        @foreach (Website_StorePhone3.Models.db.voucher v in vouchers)
+                                        {
+                                            <li style="list-style-type: disc; color: #e11b1e;">
+                                                <a style="color: #d70018; text-decoration: none;"
+                                                   href=""
+                                                   rel="nofollow">
+                                                    @v.name
+                                                </a>
+                                            </li>
+                                        }
+
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--<hr style="margin-top: 5px;margin-bottom: 5px;">-->
+                            <!-- CTKM riêng -->
+                            <div id="lt-promotion-pack"></div>
+                        </div>
+                    </aside>
+                </div>
+
+                <div>
+                    <strong style="color: #2f2f2f; font-weight: 500;">
+                        <i>
+                            Chọn
+                            màu để xem giá của sản phẩm
+                        </i>
+                    </strong>
+
+                </div>
+                <div style="margin-top: 15px;">
+                    <ul id="priceByColor"
+                        style="margin-top: 0; padding-left: 20px; display: block; list-style: none;"
+                        class="col-md-12">
+
+
+
+                        @for (int i = 0; i < productdetails.Count; i++)
+                        {
+                            <input id="id_proDetail_@i" type="hidden"
+                                   name="cc">
+
+                            <li class="col-md-4" id="li_color_@(i)"
+                                style="margin-right: 2px; margin-bottom: 5px; display: inline-block; padding-left: 5px; border-radius: 5px; width: 150px; background-color: rgba(238, 238, 238, .25);">
+
+                                <a onclick="ajaxCallImgByColor(@productdetails[i].id,@pro.id,@i)"
+                                   id="a_color_@(i)"
+                                   style="color: #d70018; text-decoration: none;"
+                                   data-toggle="tooltip" title="@productdetails[i].color.name">
+                                    <label style="color: #000; position: relative; cursor: pointer; opacity: 1; max-width: 100%;">
+                                        <span id="pd_detail_title_@(i)"
+                                              style="color: #000; float: left; width: 100%;">@productdetails[i].color.name</span>
+                                            <span id="pd_detail_price_@(i)"
+                                                  class="priceByColor" style="color: #d70018;">@productdetails[i].price</span>
+                                            </label>
+                                        </a>
+                                    </li>
+                                }
+
+                    </ul>
+                    <input id="idProductDetail" type="hidden">
+                </div>
+
+                <div class="row col-12">
+                    <button id="btn_buyNow" onclick="addToCart()" style="background: linear-gradient(#f52f32, #e11b1e);
+                                                        border: solid 1px #e11b1e; margin-top: 10px; color: #fff; font-size: 14px; padding: 8px 5px;
+                                                        line-height: 18px; width: 100%; border-radius: 5px; text-align: center; cursor: pointer;">
+                        Mua ngay
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--================End Single hàng-->
+<!--================Product Description Area =================-->
+<section class="product_description_area">
+    <div class="container">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link"
+                   id="home-tab"
+                   data-toggle="tab"
+                   href="#home"
+                   role="tab"
+                   aria-controls="home"
+                   aria-selected="true">Đặc điểm nổi bật</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   id="profile-tab"
+                   data-toggle="tab"
+                   href="#profile"
+                   role="tab"
+                   aria-controls="profile"
+                   aria-selected="false">Thông số kĩ thuật</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   id="contact-tab"
+                   data-toggle="tab"
+                   href="#contact"
+                   role="tab"
+                   aria-controls="contact"
+                   aria-selected="false">Bình luận</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active"
+                   id="review-tab"
+                   data-toggle="tab"
+                   href="#review"
+                   role="tab"
+                   aria-controls="review"
+                   aria-selected="false">Reviews</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade"
+                 id="home"
+                 role="tabpanel"
+                 aria-labelledby="home-tab">
+                <p>
+                    Đặc điểm nổi bật của OPPO A92
+
+                    Bộ sản phẩm chuẩn: Hộp, Sạc, Tai nghe, Sách hướng dẫn, Cáp, Cây lấy sim, Ốp lưng
+
+                    OPPO A92 là mẫu smartphone tầm trung vừa mới được OPPO ra mắt đầu tháng 5/2020. Chiếc điện thoại gây
+                    ấn tượng với thiết kế màn hình khoét lỗ tràn viền, cụm 4 camera ấn tượng và được bán với mức giá vô
+                    cùng phải chăng.
+                    Hiệu năng mạnh mẽ trên Snapdragon
+                    OPPO A92 được trang bị cho mình con chip Snapdragon 665 mạnh mẽ cho hiệu năng cao, xử lý đa nhiệm
+                    mượt mà, “cân” tốt các tựa game mobile hiện hành.
+                </p>
+                <p>
+                    Đặc điểm nổi bật của OPPO A92
+
+                    Bộ sản phẩm chuẩn: Hộp, Sạc, Tai nghe, Sách hướng dẫn, Cáp, Cây lấy sim, Ốp lưng
+
+                    OPPO A92 là mẫu smartphone tầm trung vừa mới được OPPO ra mắt đầu tháng 5/2020. Chiếc điện thoại gây
+                    ấn tượng với thiết kế màn hình khoét lỗ tràn viền, cụm 4 camera ấn tượng và được bán với mức giá vô
+                    cùng phải chăng.
+                    Hiệu năng mạnh mẽ trên Snapdragon
+                    OPPO A92 được trang bị cho mình con chip Snapdragon 665 mạnh mẽ cho hiệu năng cao, xử lý đa nhiệm
+                    mượt mà, “cân” tốt các tựa game mobile hiện hành.
+
+                    Điện thoại OPPO A92 | Hiệu năng mạnh mẽ
+
+                    Đi kèm với đó là GPU Adreno 610 giúp máy vừa xử lý thông tin, dữ liệu nhanh chóng vừa đảm bảo tiết
+                    kiệm điện năng tối đa.
+                </p>
+            </div>
+            <div class="tab-pane fade"
+                 id="profile"
+                 role="tabpanel"
+                 aria-labelledby="profile-tab">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody id="table-specs">
+                            <tr>
+                                <td>
+                                    <h5>Màn hình:</h5>
+                                </td>
+                                <td>
+                                    <h5>TFT LCD, 6.5", Full HD+</h5>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade"
+                 id="contact"
+                 role="tabpanel"
+                 aria-labelledby="contact-tab">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="comment_list">
+                            <div class="review_item">
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <img src="~/Content/client/img/product/single-product/review-1.png"
+                                             alt="" />
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>Blake Ruiz</h4>
+                                        <h5>12th Feb, 2017 at 05:56 pm</h5>
+                                        <a class="reply_btn" href="#">Reply</a>
+                                    </div>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco laboris nisi ut aliquip ex ea commodo
+                                </p>
+                            </div>
+                            <div class="review_item reply">
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <img src="~/Content/client/img/product/single-product/review-2.png"
+                                             alt="" />
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>Blake Ruiz</h4>
+                                        <h5>12th Feb, 2017 at 05:56 pm</h5>
+                                        <a class="reply_btn" href="#">Reply</a>
+                                    </div>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco laboris nisi ut aliquip ex ea commodo
+                                </p>
+                            </div>
+                            <div class="review_item">
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <img src="~/Content/client/img/product/single-product/review-3.png"
+                                             alt="" />
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>Blake Ruiz</h4>
+                                        <h5>12th Feb, 2017 at 05:56 pm</h5>
+                                        <a class="reply_btn" href="#">Reply</a>
+                                    </div>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco laboris nisi ut aliquip ex ea commodo
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="review_box">
+                            <h4>Post a comment</h4>
+                            <form class="row contact_form"
+                                  action="contact_process.php"
+                                  method="post"
+                                  id="contactForm"
+                                  novalidate="novalidate">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text"
+                                               class="form-control"
+                                               id="name"
+                                               name="name"
+                                               placeholder="Your Full name" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="email"
+                                               class="form-control"
+                                               id="email"
+                                               name="email"
+                                               placeholder="Email Address" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text"
+                                               class="form-control"
+                                               id="number"
+                                               name="number"
+                                               placeholder="Phone Number" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control"
+                                                  name="message"
+                                                  id="message"
+                                                  rows="1"
+                                                  placeholder="Message"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-right">
+                                    <button type="submit"
+                                            value="submit"
+                                            class="btn submit_btn">
+                                        Submit Now
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade show active"
+                 id="review"
+                 role="tabpanel"
+                 aria-labelledby="review-tab">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="row total_rate">
+                            <div class="col-6">
+                                <div class="box_total">
+                                    <h5>Overall</h5>
+                                    <h4>4.0</h4>
+                                    <h6>(03 Reviews)</h6>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="rating_list">
+                                    <h3>Based on 3 Reviews</h3>
+                                    <ul class="list">
+                                        <li>
+                                            <a href="#">
+                                                5 Star
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i> 01
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                4 Star
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i> 01
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                3 Star
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i> 01
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                2 Star
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i> 01
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                1 Star
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i> 01
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review_list">
+                            <div class="review_item">
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <img src="~/Content/client/img/product/single-product/review-1.png"
+                                             alt="" />
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>Blake Ruiz</h4>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco laboris nisi ut aliquip ex ea commodo
+                                </p>
+                            </div>
+                            <div class="review_item">
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <img src="~/Content/client/img/product/single-product/review-2.png"
+                                             alt="" />
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>Blake Ruiz</h4>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco laboris nisi ut aliquip ex ea commodo
+                                </p>
+                            </div>
+                            <div class="review_item">
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <img src="~/Content/client/img/product/single-product/review-3.png"
+                                             alt="" />
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>Blake Ruiz</h4>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco laboris nisi ut aliquip ex ea commodo
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="review_box">
+                            <h4>Add a Review</h4>
+                            <p>Your Rating:</p>
+                            <ul class="list">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-star"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-star"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-star"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-star"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-star"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <p>Outstanding</p>
+                            <form class="row contact_form"
+                                  action="contact_process.php"
+                                  method="post"
+                                  id="contactForm"
+                                  novalidate="novalidate">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text"
+                                               class="form-control"
+                                               id="name"
+                                               name="name"
+                                               placeholder="Your Full name" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="email"
+                                               class="form-control"
+                                               id="email"
+                                               name="email"
+                                               placeholder="Email Address" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text"
+                                               class="form-control"
+                                               id="number"
+                                               name="number"
+                                               placeholder="Phone Number" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control"
+                                                  name="message"
+                                                  id="message"
+                                                  rows="1"
+                                                  placeholder="Review"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-right">
+                                    <button type="submit"
+                                            value="submit"
+                                            class="btn submit_btn">
+                                        Submit Now
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Product Description Area =================-->
+
+<script>
+   
+    var firstProductId = document.getElementById("productId");
+    var firstPDId = document.getElementById("firstPDId");
+
+
+
+
+    $(document).ready(function () {
+
+        console.log("firstPD id" + firstPDId.value);
+     
+        $('.priceBtnCapa').each(function () {
+            $(this).text(numeral($(this).text()).format('0,0') + " VND");
+        });
+        $('.priceByColor').each(function () {
+            $(this).text(numeral($(this).text()).format('0,0') + " VND");
+        });
+
+
+
+        var isFirstDisplay = true;
+       // ajaxCallCapacity(firstProductId.value, firstIdSpec.value, 1, isFirstDisplay);
+
+        ajaxCallImgByColor(firstPDId.value, firstProductId.value, 0, isFirstDisplay);
+
+
+
+    });
+
+    function addToCart() {
+        var idPD = document.getElementById("idProductDetail");
+        console.log("add to cart" + idPD.value);
+
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:44306/RestCart/addToCart",
+
+                data: {
+                    idProductDetail: idPD.value
+                },
+                success: function (res) {
+                    console.log(res);
+                    if (res) {
+                        if (res.Message == "SUCCESS") {
+
+                            window.location = "https://localhost:44306/ShoppingCart";
+                        }
+                        else {
+                            console.log("false");
+
+
+                        }
+                    }
+
+
+
+                }
+            });
+
+
+
+    };
+    // click vào màu, thay đổi hình ảnh
+    function ajaxCallImgByColor(ProductDetailId, productId, btnColorId, isFirstDisplay) {
+
+        
+        console.log("id pro is" + productId);
+        console.log("id pro detail" + ProductDetailId);
+
+        console.log("id btn color" + btnColorId);
+
+
+
+      
+    
+
+
+        var priceByColor = document.getElementById("priceByColor");
+        var li = priceByColor.querySelectorAll("li");
+        for (var i = 0; i < li.length; i++) {
+            li[i].style.border = "solid 1px rgb(18, 17, 17)";
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "https://localhost:44306/RestProduct/getImgByColor",
+
+            data: {
+                productDetailId: ProductDetailId
+            },
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (res) {
+                console.log(res);
+                var idProductDetail = document.getElementById("idProductDetail");
+                idProductDetail.value = ProductDetailId;
+                console.log("load img");
+               
+
+                var btnColor = document.getElementById("li_color_" + btnColorId);
+                btnColor.style.border = "solid 1px #e11b1e";
+
+
+                var img = document.getElementById("img_main");
+                var price = document.getElementById("price");
+
+                var urlImg = "@baseUrl/Content/client/img/product/" + res.imgUrl;
+                console.log(urlImg);
+                img.setAttribute("src", urlImg);
+
+                price.style.color = "#dd2222";
+                price.style.fontSize = "30px";
+                price.style.fontWeight = "600";
+                price.style.marginBottom = "15px";
+
+                $('.priceee').each(function () {
+                    $(this).text(numeral(res.price).format('0,0') + " VND");
+
+                })
+
+
+
+
+                //thong so ki thuat
+
+
+                var tableSpecId = document.getElementById("table-specs");
+                var html = "";
+                for (var i = 0; i < res.spec["specdetails"].length; i++) {
+                    const spec = (res || {}).spec.specdetails || null;
+
+                    if (spec != null) {
+
+                        html = html
+
+                            + "<tr>"
+                            + "<td>"
+                            + "<h5>"
+                            + res.spec.specdetails[i].name
+                            + "</h5>"
+                            + "</td>"
+                            + "<td>"
+                            + "<h5>"
+                            + res.spec.specdetails[i].value
+                            + "</h5>"
+                            + "</td>"
+
+                            + "</tr>";
+
+                    }
+
+                    var id_a_color = "a_color_" + btnColorId;
+                    var a_color = document.getElementById(id_a_color);
+                    if (res.status == 0) {
+
+
+                        document.getElementById(id_a_color).style.cursor = "not-allowed";
+                        document.getElementById(id_a_color).disabled = true;
+                        //document.getElementById(id_a_color).className="disable";
+                        document.getElementById(id_a_color).style.opacity = "0.3";
+                        document.getElementById(id_a_color).style.background = "#fff";
+                        document.getElementById(id_a_color).style.border = "solid 1px #f8f9fa";
+                       
+                        a_color.setAttribute("title", "Tạm hết hàng");
+                    }
+                    else {
+                        document.getElementById(id_a_color).style.cursor = "pointer";
+                        document.getElementById(id_a_color).style.opacity = "1";
+                        document.getElementById(id_a_color).style.backgroundColor = "rgba(238, 238, 238, .25)";
+                    }
+
+
+
+                }
+                tableSpecId.innerHTML = html;
+
+
+
+            }
+        });
+
+    };
+
+
+
+</script>

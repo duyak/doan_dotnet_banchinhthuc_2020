@@ -1,0 +1,165 @@
+﻿@model Website_StorePhone3.Models.Entities.Order
+
+@{
+
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Website_StorePhone3.Models.Entities.Cart> carts = ViewBag.carts;
+    decimal totalPrice = ViewBag.totalPrice;
+}
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content d-md-flex justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <h2>Product Checkout</h2>
+                    <p>Very us move be blessed multiply night</p>
+                </div>
+                <div class="page_link">
+                    <a href="index.html">Home</a>
+                    <a href="checkout.html">Product Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+<!--================Checkout Area =================-->
+<section class="checkout_area section_gap">
+    <div class="container">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h3>Thông tin</h3>
+
+
+                        <div class="row contact_form">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.id)
+
+                            <div class="col-md-12 form-group p_star">
+                                @Html.LabelFor(model => model.name)
+                                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.name,"", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="col-md-6 form-group p_star">
+                                @Html.LabelFor(model => model.phoneNumber, new { htmlAttributes = new { @class = "p_star" } })
+                                @Html.EditorFor(model => model.phoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.phoneNumber, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="col-md-6 form-group p_star">
+                                @Html.LabelFor(model => model.address)
+                                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="checkout__order">
+                            <h3>Hóa đơn của bạn</h3>
+
+
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Danh sách sản phẩm</th>
+                                        <th>Tiền</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    @foreach (Website_StorePhone3.Models.Entities.Cart c in carts)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @c.ProductDetail.product.name-@c.ProductDetail.color.name-@c.ProductDetail.spec.GotValue GB × @c.Quantity
+                                            </td>
+                                            <td class="price">@c.TotalPrice</td>
+                                        </tr>
+                                    }
+
+
+
+
+                                </tbody>
+                            </table>
+                            <p style="padding: 10px 0 0 0; text-align: right; color: #d70018;">
+                                *Miễn phí giao hàng
+                            </p>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+
+                                            @Html.LabelFor(model => model.payment)
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>
+                                           
+                                            @Html.DropDownListFor(model => model.payment, new List<SelectListItem>()
+                      {
+                          new SelectListItem {Text = "Thanh toán khi nhận hàng", Value = "1"},
+                          new SelectListItem {Text = "Chuyển khoản", Value = "2"}
+                      }, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.payment)
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+
+
+                            <div class="checkout__order__total" style="padding-left: 30px; margin-bottom: 15px; font-weight: 70%; font-size: 25px; ">
+                                Tổng tiền: <span class="price" style="">@totalPrice</span>
+
+
+                            </div>
+
+
+
+                            <br />
+                            <button type="submit" class="main_btn" >Thanh toán</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</section>
+<script src="@Url.Content("~/Content/client/js/jquery-3.2.1.min.js")" language="javascript" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/client/js/numeral.min.js")" language="javascript" type="text/javascript"></script>
+<script>
+
+    $('.price').each(function () {
+        $(this).text(numeral($(this).text()).format('0,0') + " VND");
+    });
+
+</script>

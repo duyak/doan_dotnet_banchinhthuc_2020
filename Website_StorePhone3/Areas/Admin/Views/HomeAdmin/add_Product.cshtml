@@ -1,0 +1,219 @@
+﻿
+@{
+    ViewBag.Title = "add_Product";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="#">Trang chủ</a>
+                </li>
+
+                <li>
+                    <a href="#">Danh sách sản phẩm</a>
+                </li>
+                <li class="active">Thêm sản phẩm</li>
+            </ul><!-- /.breadcrumb -->
+
+            <div class="nav-search" id="nav-search">
+                <form class="form-search">
+                    <span class="input-icon">
+                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                    </span>
+                </form>
+            </div><!-- /.nav-search -->
+        </div>
+
+        <div class="page-content">
+
+
+            <div class="page-header">
+                <h1>
+                    Quản lý sản phẩm
+                    <small>
+                        <i class="ace-icon fa fa-angle-double-right"></i>
+                        Thêm sản phẩm
+                    </small>
+                </h1>
+            </div><!-- /.page-header -->
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Mã sản phẩm: </label>
+
+                            <div class="col-sm-9">
+                                <input type="text" id="form-field-0" placeholder="Vui lòng nhập mã sản phẩm" class="col-xs-10" />
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Tên sản phẩm: </label>
+
+                            <div class="col-sm-9">
+                                <input type="text" id="form-field-1" placeholder="Vui lòng nhập tên sản phẩm" class="col-xs-10" />
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">Nhà sản xuất :</label>
+
+                            <div class="col-sm-9">
+                                <select name="cars" id="carsw">
+                                    <option value="volvo">SamSung</option>
+                                    <option value="saa2b">Apple</option>
+                                    <option value="mercedes">Xiaomi</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">Danh mục :</label>
+
+                            <div class="col-sm-9">
+                                <select name="cars" id="carsw2">
+                                    <option value="volvo">Điện thoại</option>
+                                    <option value="saa2b">Laptop</option>
+                                    <option value="mercedes">Phụ kiện</option>
+                                </select>
+
+                            </div>
+
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">Màu  sắc:</label>
+
+                            <div class="col-sm-9">
+                                <select name="cars" id="carsw2s">
+                                    <option value="">Chưa chọn màu sắc</option>
+                                    <option value="volvo">Màu đỏ</option>
+                                    <option value="saa2b">Màu vàng</option>
+                                    <option value="mercedes">Màu tím</option>
+                                </select>
+
+                            </div>
+
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">Số lượng:</label>
+
+                            <div class="col-sm-9">
+                                <input type="text" id="form-field-sad1" placeholder="Vui lòng nhập số lượng" class="col-xs-10" />
+
+                            </div>
+
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">Ảnh đại diện</label>
+
+                            <div class="col-sm-9">
+                                <input type="file" id="form-field-3" placeholder="Vui lòng nhập mật khẩu" class="col-xs-10" />
+
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">Danh sách ảnh:</label>
+
+                            <div class="col-sm-9">
+                                <input type="file" id="form-field-" placeholder="Vui lòng nhập lại mật khẩu" class="col-xs-10" />
+
+                            </div>
+                        </div>
+
+                        <div class="space-4"></div>
+
+
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">Mô tả tóm tắt:</label>
+
+                            <div class="col-sm-9">
+                                <textarea class="col-xs-10"></textarea>
+                                <!--                                    <input type="texta" id="form-field-10" placeholder="Vui lòng nhập số điện thoại" class="col-xs-10" />-->
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">Mô tả chi tiết:</label>
+
+                            <div class="col-sm-9">
+                                <textarea class="col-xs-10"></textarea>
+                                <!--                                    <input type="texta" id="form-field-10" placeholder="Vui lòng nhập số điện thoại" class="col-xs-10" />-->
+
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">Giá sản phẩm:</label>
+
+                            <div class="col-sm-9">
+                                <input type="number" id="form-fiel" placeholder="" class="col-xs-10" />
+
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">Giảm giá:</label>
+
+                            <div class="col-sm-9">
+                                <input type="number" id="form-sd" placeholder="" class="col-xs-10" />
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="clearfix form-actions">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button class="btn btn-info" type="button">
+                                    <i class="ace-icon fa fa-check bigger-110"></i>
+                                    Gửi
+                                </button>
+
+                                &nbsp; &nbsp; &nbsp;
+                                <button class="btn" type="reset">
+                                    <i class="ace-icon fa fa-undo bigger-110"></i>
+                                    Làm lại
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="hr hr-24"></div>
+
+
+
+                        <div class="space-24"></div>
+
+
+                    </form>
+
+
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div>
+</div><!-- /.main-content -->

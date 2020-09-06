@@ -1,0 +1,596 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/client/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/client/vendors/linericon/style.css" />
+    <link rel="stylesheet" href="~/Content/client/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/client/css/themify-icons.css" />
+    <link rel="stylesheet" href="~/Content/client/css/flaticon.css" />
+    <link rel="stylesheet" href="~/Content/client/vendors/owl-carousel/owl.carousel.min.css" />
+    <link rel="stylesheet" href="~/Content/client/vendors/lightbox/simpleLightbox.css" />
+    <link rel="stylesheet" href="~/Content/client/vendors/nice-select/css/nice-select.css" />
+    <link rel="stylesheet" href="~/Content/client/vendors/animate-css/animate.css" />
+    <link rel="stylesheet" href="~/Content/client/vendors/jquery-ui/jquery-ui.css" />
+    <!-- main css -->
+    <link rel="stylesheet" href="~/Content/client/css/style.css" />
+
+    <link rel="stylesheet" href="~/Content/client/css/responsive.css" />
+</head>
+<body>
+
+
+
+    <style type="text/css">
+        .searchBar {
+            width: 100%;
+            height: 47px;
+        }
+
+        .searchBar {
+            display: inline-block;
+            float: left;
+            margin: 11px 0px;
+        }
+
+            .searchBar form.form-inline {
+                width: 100%;
+                height: 100%;
+            }
+
+        .fs-sresult {
+            z-index: 100;
+            width: 100%;
+        }
+
+            .fs-sresult .fs-sremain {
+                background-color: #fff;
+                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
+                margin: 0px 66px 0px 1px;
+            }
+
+            .fs-sresult ul {
+                overflow: hidden;
+            }
+
+        ul {
+            list-style: none;
+        }
+
+        .fs-sresult ul li {
+            list-style: none;
+        }
+
+            .fs-sresult ul li:hover {
+                background-color: darkkhaki;
+            }
+
+            .fs-sresult ul li a {
+                display: table;
+                width: 100%;
+                padding: 10px 15px;
+                border-bottom: 1px solid #e8e8e8;
+            }
+
+                .fs-sresult ul li a > p {
+                    display: table-cell;
+                    vertical-align: top;
+                    width: 40px;
+                    height: 40px;
+                }
+
+                .fs-sresult ul li a > div {
+                    display: table-cell;
+                    vertical-align: top;
+                    padding-left: 15px;
+                }
+
+                .fs-sresult ul li a p img {
+                    width: 40px;
+                }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .fs-sresult ul li a > div > h3 {
+            font-size: 14px;
+            line-height: 1.29;
+            color: #505050;
+            margin-bottom: 6px;
+        }
+
+        h3 {
+            margin: 0 0 15px;
+        }
+
+        .fs-sresult ul li a > div > p {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 0px;
+            display: inline-block;
+            margin-right: 15px;
+        }
+    </style>
+    <header class="header_area">
+
+        <div class="main_menu">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light w-100">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="nav-link" href="@Url.Action("Index","Home")"> <img src="~/Content/client/img/logo.png" alt="" /></a>
+                    <button class="navbar-toggler"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset w-100"
+                         id="navbarSupportedContent">
+                        <div class="row w-100 mr-0">
+                            <div class="col-lg-7 pr-0">
+                                <ul class="nav navbar-nav center_nav pull-right">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="@Url.Action("Index","Home")">Trang chủ</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="@Url.Action("List","Shop")">Shop</a>
+
+                                    </li>
+
+                                    <li class="nav-item active submenu dropdown">
+                                        <a href="#"
+                                           class="nav-link dropdown-toggle"
+                                           data-toggle="dropdown"
+                                           role="button"
+                                           aria-haspopup="true"
+                                           aria-expanded="false">Danh mục sản phẩm</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                @* <a class="nav-link" href="category.html">Danh mục sản phẩm</a>*@
+                                                @*@Html.ActionLink("Apple", "Apple", "DanhMuc", new { @class = "nav-link" })*@
+                                                <a class="nav-link" href="@Url.Action("Apple","DanhMuc")">Apple</a>
+
+                                            </li>
+                                            <li class="nav-item">
+                                                @* <a class="nav-link" href="single-product.html">Chi tiết sản phẩm</a>*@
+                                               @* @Html.ActionLink("SamSung", "SamSung", "DanhMuc", new { @class = "nav-link" })*@
+                                                <a class="nav-link" href="@Url.Action("SamSung","DanhMuc")">SamSung</a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                @*   <a class="nav-link" href="cart.html">Giỏ hàng</a>*@
+                                                @*@Html.ActionLink("Phụ kiện", "PhuKien", "DanhMuc", new { @class = "nav-link" })*@
+
+                                                <a class="nav-link" href="@Url.Action("PhuKien","DanhMuc")">Phụ Kiện</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item submenu dropdown">
+                                        <a href="single-blog.html"
+                                           class="nav-link dropdown-toggle">Blog</a>
+
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="contact.html">Liên Hệ</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-5 pr-0">
+                                <ul class="nav navbar-nav navbar-right right_nav pull-right">
+
+                                    <li class="nav-item">
+                                        @{
+                                            if (Request.IsAuthenticated)
+
+                                            {
+                                                using (Html.BeginForm("Logout", "MyUser", FormMethod.Post, new { id = "logoutForm" }))
+                                                {
+                                                    <span>@(Request.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest")</span>
+                                                    <a class="icons" href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-in"></i></a>
+
+                                                    <a href="@Url.Action("Cart")" class="icons">
+                                                        <i class="ti-shopping-cart"></i>
+
+                                                    </a>
+
+                                                    @* @Html.ActionLink("<i class='ti-shopping-cart'></i>", "Cart", "Home", new { @class = "icons" })*@
+
+                                                    <a href="#" class="icons">
+                                                        <i class="ti-heart" aria-hidden="true"></i>
+                                                    </a>
+
+
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                                <a class="icons" href="@Url.Action("Login","MyUser")"><i class="fa fa-user"></i></a>
+
+                                                @*@Html.ActionLink("<i></i>", "Login", "Home", new { @class = "icons fa fa-sign-in" })*@
+
+
+                                                <a href="@Url.Action("Register","MyUser")" class="icons">
+                                                    <i class="fa fa-registered"></i>
+
+                                                </a>
+                                                @* @Html.ActionLink("<i class='fa fa-registered'></i>", "Register", "Home", new { @class = "icons" })*@
+
+
+
+                                                <a href="@Url.Action("Cart","MyUser")" class="icons">
+                                                    <i class="ti-shopping-cart"></i>
+
+                                                </a>
+
+                                                @* @Html.ActionLink("<i class='ti-shopping-cart'></i>", "Cart", "Home", new { @class = "icons" })*@
+
+
+
+
+
+
+                                                <a href="#" class="icons">
+                                                    <i class="ti-heart" aria-hidden="true"></i>
+                                                </a>
+
+
+                                            }
+                                        }
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <div class="searchBar" @* style=" margin-top: -5px; margin-bottom: 10px;"*@>
+                            <form class="form-inline">
+                                <input style="width:100%" required name="keys" class="form-control mr-sm-2 searchInput" type="text"
+                                       placeholder="Bạn cần tìm gì..." oninput="this.setCustomValidity('')"
+                                       aria-label="Search" onkeyup="debounce(showResult(), 5000)"
+                                       onclick="onClinkInputSearch()">
+
+                                <div class="fs-sresult" style="display: none">
+                                    <div class="fs-sremain">
+                                        <ul style="display: block;">
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-3"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+
+    <!--================ End Inspired Product Area =================-->
+    <!--================ Start Blog Area =================-->
+    <section class="blog-area section-gap">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="main_title">
+                        <h2><span>Blog mới nhất</span></h2>
+                        <!--                    <p>Bring called seed first of third give itself now ment</p>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-blog">
+                        <div class="thumb">
+                            <img class="img-fluid" src="~/Content/client/img/phone/image/iphone-11-red-400x400dathu.jpg" alt="">
+                        </div>
+                        <div class="short_details">
+                            <div class="meta-top d-flex">
+                                <a href="#">Đăng bởi Admin</a>
+                                <a href="#"><i class="ti-comments-smiley"></i>2 Bình luận</a>
+                            </div>
+                            <a class="d-block" href="single-blog.html">
+                                <h4>
+                                    Ford clever bed stops your sleeping
+                                    partner hogging the whole
+                                </h4>
+                            </a>
+                            <div class="text-wrap">
+                                <p>
+                                    Let one fifth i bring fly to divided face for bearing the divide unto seed winged
+                                    divided light
+                                    Forth.
+                                </p>
+                            </div>
+                            <a href="#" class="blog_btn">Learn More <span class="ml-2 ti-arrow-right"></span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-blog">
+                        <div class="thumb">
+                            <img class="img-fluid" src="~/Content/client/img/phone/image/samsung-galaxy-a21s-055620-045659-400x400-dathu.jpg" alt="">
+                        </div>
+                        <div class="short_details">
+                            <div class="meta-top d-flex">
+                                <a href="#">Đăng bỏi Admin</a>
+                                <a href="#"><i class="ti-comments-smiley"></i>2 Bình luận</a>
+                            </div>
+                            <a class="d-block" href="single-blog.html">
+                                <h4>
+                                    Ford clever bed stops your sleeping
+                                    partner hogging the whole
+                                </h4>
+                            </a>
+                            <div class="text-wrap">
+                                <p>
+                                    Let one fifth i bring fly to divided face for bearing the divide unto seed winged
+                                    divided light
+                                    Forth.
+                                </p>
+                            </div>
+                            <a href="#" class="blog_btn">Learn More <span class="ml-2 ti-arrow-right"></span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-blog">
+                        <div class="thumb">
+                            <img class="img-fluid" src="~/Content/client/img/phone/image/xiaomi-redmi-9-114620-094644-400x400-dathu.jpg" alt="">
+                        </div>
+                        <div class="short_details">
+                            <div class="meta-top d-flex">
+                                <a href="#">Đăng bởi Admin</a>
+                                <a href="#"><i class="ti-comments-smiley"></i>2 Bình luận</a>
+                            </div>
+                            <a class="d-block" href="single-blog.html">
+                                <h4>
+                                    Ford clever bed stops your sleeping
+                                    partner hogging the whole
+                                </h4>
+                            </a>
+                            <div class="text-wrap">
+                                <p>
+                                    Let one fifth i bring fly to divided face for bearing the divide unto seed winged
+                                    divided light
+                                    Forth.
+                                </p>
+                            </div>
+                            <a href="#" class="blog_btn">Learn More <span class="ml-2 ti-arrow-right"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--footer-->
+    <!--================ End Blog Area =================-->
+    <!--================ start footer Area  =================-->
+    <footer class="footer-area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-6 single-footer-widget">
+                    <h4>Sản phẩm hàng đầu </h4>
+                    <ul>
+                        <li><a href="#">Trang Web Được Quản Lý</a></li>
+                        <li><a href="#">Quản Lý Danh Tiếng</a></li>
+                        <li><a href="#">Dịch vụ tiếp thị</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 single-footer-widget">
+                    <h4>Đường dẫn nhanh</h4>
+                    <ul>
+                        <!--                    <li><a href="#">Jobs</a></li>-->
+                        <li><a href="#">Tài sản thương hiệu</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 single-footer-widget">
+                    <h4>Đặc trưng</h4>
+                    <ul>
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="#">Brand Assets</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 single-footer-widget">
+                    <h4>Tài nguyên</h4>
+                    <ul>
+                        <li><a href="#">Guides</a></li>
+                        <li><a href="#">Research</a></li>
+                        <li><a href="#">Experts</a></li>
+                        <li><a href="#">Agencies</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 single-footer-widget">
+                    <h4>Bản tin</h4>
+                    <p>You can trust us. we only send promo offers,</p>
+                    <div class="form-wrap" id="mc_embed_signup">
+                        <form target="_blank"
+                              action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                              method="get" class="form-inline">
+                            <input class="form-control" name="EMAIL" placeholder="Your Email Address"
+                                   onfocus="this.placeholder = ''"
+                                   onblur="this.placeholder = 'Your Email Address '" required="" type="email">
+                            <button class="click-btn btn btn-default">Subscribe</button>
+                            <div style="position: absolute; left: -5000px;">
+                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                            </div>
+
+                            <div class="info"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom row align-items-center">
+                <p class="footer-text m-0 col-lg-8 col-md-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script>
+                    All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+                <div class="col-lg-4 col-md-12 footer-social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                    <a href="#"><i class="fa fa-behance"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        $(document).mouseup(function (e) {
+            if ($(e.target).closest(".fs-sresult").length === 0) {
+                $(".fs-sresult").hide();
+            }
+        });
+
+
+        function onClinkInputSearch() {
+            $(".fs-sresult").show();
+        }
+
+
+        function debounce(func, wait) {
+            let timeout;
+
+            return function executedFunction(...args) {
+                const later = () => {
+                    timeout = null;
+                    func(...args);
+                };
+
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        function showResult() {
+            var keys = $(".searchInput").val();
+            console.log(keys);
+            if (!keys) {
+                $(".fs-sresult").hide();
+            } else {
+                $(".fs-sresult").show();
+                $.ajax({
+                    type: "GET",
+                    url: "https://localhost:44306/RestProduct/searchProduct",
+                    data: {
+                        keys: keys
+                    },
+                   @* headers: {
+                        Accept: "application/json; charset=utf-8",
+                        "Content-Type": "application/json; charset=utf-8"
+                    },*@
+                    contentType: "application/json;charset=UTF-8",
+                    dataType: "json",
+                    success: function (res) {
+
+                        console.log("DAtaaaaaaaaaaaaaaaaaaa" + res);
+
+                        $(".fs-sresult").find("ul>li").remove();
+
+
+                            for (var i = 0; i < res.length; i++) {
+
+                                $(".fs-sresult").find("ul").append("<li @*style="+'background'+":"+ 'lightgoldenrodyellow'+"*@ ><a href=\"https://localhost:44306/chitiet/ProductDetail/" + res[i].id + "\">" +
+                                    "                                            <p>" +
+                                    "                                                <img height="+40+" width="+40+"  src=\"https://localhost:44306/Content/client/img/product/" + res[i].imgMain + " \"" +
+                                    "                                                     alt=\"https://localhost:44306/Content/client/img/product/" + res[i].imgMain + " \">" +
+                                    "                                            </p>" +
+                                    "                                            <div>" +
+                                    "                                               <h3>" + res[i].name + "</h3>" +
+                                    "                                               <p class=\"fshop-search-prodprice\">" + formatNumber(res[i].code, ',', '.') + "</p></div>" +
+                                    "                                 </a></li>");
+
+
+
+                            }
+
+
+                            $(".fs-sresult").find("ul").append("" +
+                                "<li class=\"black\">\n" +
+                                "   <a \" href=\"#" + "\">Hiển thị kết quả cho\n" +
+                                "         <b><i>" + keys + "</i></b>\n" +
+                                "   </a>\n" +
+                                "</li>");
+
+                    },
+                    error: function () {
+                        $(".fs-sresult").find("ul>li").remove();
+
+                        $(".fs-sresult").find("ul").append("" +
+                            "<li class=\"black\">\n" +
+                            "   <a \" href=\"#\">Không tìm thấy kết quả cho\n" +
+                            "         <b><i>" + keys + "</i></b>\n" +
+                            "   </a>\n" +
+                            "</li>");
+                    }
+                });
+            }
+        }
+    </script>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>*@
+
+
+
+    <script src="~/Content/client/js/Util.js"></script>
+    <script src="~/Content/client/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/client/js/popper.js"></script>
+    <script src="~/Content/client/js/show-hint.js"></script>
+    <script src="~/Content/client/js/bootstrap.min.js"></script>
+    <script src="~/Content/client/js/stellar.js"></script>
+    <script src="~/Content/client/js/Util.js"></script>
+    <script src="~/Content/client/vendors/lightbox/simpleLightbox.min.js"></script>
+    <script src="~/Content/client/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="~/Content/client/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="~/Content/client/vendors/isotope/isotope-min.js"></script>
+    <script src="~/Content/client/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/Content/client/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Content/client/vendors/counter-up/jquery.waypoints.min.js"></script>
+    <script src="~/Content/client/vendors/counter-up/jquery.counterup.js"></script>
+    <script src="~/Content/client/js/mail-script.js"></script>
+    <script src="~/Content/client/js/theme.js"></script>
+    <script src="@Url.Content("~/Content/client/js/numeral.min.js")" language="javascript" type="text/javascript"></script>
+
+
+
+
+</body>
+</html>

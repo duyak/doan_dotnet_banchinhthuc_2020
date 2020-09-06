@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "VeryAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>VeryAccount</h2>
+@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong> Your account has been activated successfully!.Click here to @Html.ActionLink("Login", "Login", "MyUser")
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        <strong>Error!</strong>@ViewBag.Message
+    </div>
+}
+
+<script src="@Url.Content("~/Content/client/js/jquery-3.2.1.min.js")" language="javascript" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/client/js/numeral.min.js")" language="javascript" type="text/javascript"></script>
